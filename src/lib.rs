@@ -12,9 +12,11 @@
 //! If you find a way to segfault without using the `libapt-pkg` bindings
 //! directly, please report this as a bug.
 
+#[macro_use]
 pub mod cache;
 pub mod config;
 mod depcache;
+pub mod macros;
 pub mod package;
 pub mod pkgmanager;
 pub mod progress;
