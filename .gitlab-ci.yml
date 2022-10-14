@@ -66,6 +66,8 @@ publish:
   rules:
     - if: $CI_MERGE_REQUEST_SOURCE_PROJECT_PATH == "volian/rust-apt"
     - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "main"
+    - if:
+      changes: ["Cargo.toml"]
 
   script:
     - |
