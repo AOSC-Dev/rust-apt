@@ -329,7 +329,7 @@ mod cache {
 
 		pkg.mark_install(true, true);
 		pkg.protect();
-		cache.resolve(false).unwrap();
+		cache.resolve().unwrap();
 
 		let pkg2 = cache.get("gsasl-common").unwrap();
 		pkg2.mark_install(true, true);
@@ -347,7 +347,7 @@ mod cache {
 		pkg.mark_install(false, true);
 		pkg.protect();
 
-		assert!(cache.resolve(false).is_err());
+		assert!(cache.resolve().is_err());
 	}
 
 	#[test]

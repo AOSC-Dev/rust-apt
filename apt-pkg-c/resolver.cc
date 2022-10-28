@@ -18,9 +18,8 @@ const std::unique_ptr<PkgProblemResolver>& resolver, const PackagePtr& pkg) {
 
 /// Try to resolve dependency problems by marking packages for installation and removal.
 void resolver_resolve(const std::unique_ptr<PkgProblemResolver>& resolver,
-bool fix_broken,
 DynOperationProgress& callback) {
 	OpProgressWrapper op_progress(callback);
-	resolver->Resolve(fix_broken, &op_progress);
+	resolver->ResolveByKeep(&op_progress);
 	handle_errors();
 }

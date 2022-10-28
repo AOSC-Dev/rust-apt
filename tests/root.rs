@@ -106,7 +106,7 @@ mod root {
 
 		pkg.protect();
 		pkg.mark_install(true, true);
-		cache.resolve(false).unwrap();
+		cache.resolve().unwrap();
 		dbg!(pkg.marked_install());
 
 		let mut progress = AptAcquireProgress::new_box();
@@ -135,7 +135,7 @@ mod root {
 
 		pkg1.mark_install(true, true);
 		pkg2.mark_install(true, true);
-		cache.resolve(false).unwrap();
+		cache.resolve().unwrap();
 
 		let mut progress = AptAcquireProgress::new_box();
 		let mut inst_progress = AptInstallProgress::new_box();

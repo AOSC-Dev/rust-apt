@@ -40,12 +40,8 @@ impl ProblemResolver {
 
 	pub fn protect(&self, pkg_ptr: &PackagePtr) { raw::resolver_protect(self.get_ptr(), pkg_ptr); }
 
-	pub fn resolve(
-		&self,
-		fix_broken: bool,
-		op_progress: &mut Box<dyn OperationProgress>,
-	) -> Result<(), Exception> {
-		raw::resolver_resolve(self.get_ptr(), fix_broken, op_progress)
+	pub fn resolve(&self, op_progress: &mut Box<dyn OperationProgress>) -> Result<(), Exception> {
+		raw::resolver_resolve(self.get_ptr(), op_progress)
 	}
 }
 
@@ -72,7 +68,6 @@ pub mod raw {
 		// TODO: Create custom errors when we have better information
 		pub fn resolver_resolve(
 			resolver: &UniquePtr<PkgProblemResolver>,
-			fix_broken: bool,
 			op_progress: &mut DynOperationProgress,
 		) -> Result<()>;
 	}

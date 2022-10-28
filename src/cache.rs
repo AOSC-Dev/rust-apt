@@ -387,12 +387,10 @@ impl Cache {
 	///
 	/// Returns [`Err`] if there was an error reaching dependency resolution.
 	#[allow(clippy::result_unit_err)]
-	pub fn resolve(&self, fix_broken: bool) -> Result<(), Exception> {
+	pub fn resolve(&self) -> Result<(), Exception> {
 		// Use our dummy OperationProgress struct. See
 		// [`crate::cache::OperationProgress`] for why we need this.
-		self.resolver
-			.borrow()
-			.resolve(fix_broken, &mut NoOpProgress::new_box())
+		self.resolver.borrow().resolve(&mut NoOpProgress::new_box())
 	}
 
 	/// Fetch any archives needed to complete the transaction.

@@ -10,5 +10,4 @@ const std::unique_ptr<PkgCacheFile>& cache);
 void resolver_protect(
 const std::unique_ptr<PkgProblemResolver>& resolver, const PackagePtr& pkg);
 void resolver_resolve(const std::unique_ptr<PkgProblemResolver>& resolver,
-bool fix_broken,
 DynOperationProgress& op_progress);
