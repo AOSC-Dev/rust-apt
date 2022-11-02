@@ -1,4 +1,23 @@
+use std::io::prelude::*;
+use std::{env, fs};
+
 fn main() {
+	// Set up 'defines.h' for our features.
+	let mut defines = fs::File::open("apt-pkg-c/defines.h").unwrap();
+	let mut defines_string = String::new();
+	defines.read_to_string(&mut defines_string).unwrap();
+
+	if env::var("CARGO_FEATURE_WORKER_SIZES").is_ok() {
+		defines_string =
+			defines_string.replace("RUST_APT_WORKER_SIZES 0", "RUST_APT_WORKER_SIZES 1");
+	} else {
+		defines_string =
+			defines_string.replace("RUST_APT_WORKER_SIZES 1", "RUST_APT_WORKER_SIZES 0");
+	}
+
+	fs::write("apt-pkg-c/defines.h", defines_string).unwrap();
+
+	// Set up CXX.
 	let source_files = vec![
 		"src/cache.rs",
 		"src/progress.rs",
@@ -24,6 +43,7 @@ fn main() {
 		.flag_if_supported("-std=c++14")
 		.compile("rust-apt");
 
+	// Tell Cargo about our C++ files.
 	println!("cargo:rustc-link-lib=apt-pkg");
 	println!("cargo:rerun-if-changed=src/cache.rs");
 	println!("cargo:rerun-if-changed=src/progress.rs");
@@ -61,4 +81,6 @@ fn main() {
 
 	println!("cargo:rerun-if-changed=apt-pkg-c/resolver.cc");
 	println!("cargo:rerun-if-changed=apt-pkg-c/resolver.h");
+
+	println!("cargo:rerun-if-changed=apt-pkg-c/defines.h");
 }

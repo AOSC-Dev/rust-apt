@@ -312,9 +312,13 @@ impl AcquireProgress for AptAcquireProgress {
 				work_string.push_str(&worker.active_subprocess);
 			}
 
-			work_string.push(' ');
-			work_string.push_str(&unit_str(worker.current_size, NumSys::Decimal));
+			#[cfg(feature = "worker_sizes")]
+			{
+				work_string.push(' ');
+				work_string.push_str(&unit_str(worker.current_size, NumSys::Decimal));
+			}
 
+			#[cfg(feature = "worker_sizes")]
 			if worker.total_size > 0 && !worker.complete {
 				let _ = write!(
 					work_string,
@@ -465,8 +469,7 @@ impl InstallProgress for AptInstallProgress {
 /// This module contains the bindings and structs shared with c++
 #[cxx::bridge]
 pub mod raw {
-
-	/// A simple representation of an Acquire worker.
+	/// A simple representation of an Acquire worker.   
 	///
 	/// TODO: Make this better.
 	struct Worker {
@@ -475,7 +478,13 @@ pub mod raw {
 		id: u64,
 		short_desc: String,
 		active_subprocess: String,
+		/// **NOTE**: This field is only available when the
+		/// [`worker_sizes`](/rust_apt#worker_sizes) feature is enabled.
+		#[cfg(feature = "worker_sizes")]
 		current_size: u64,
+		/// **NOTE**: This field is only available when the
+		/// [`worker_sizes`](/rust_apt#worker_sizes) feature is enabled.
+		#[cfg(feature = "worker_sizes")]
 		total_size: u64,
 		complete: bool,
 	}
