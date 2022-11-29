@@ -51,7 +51,6 @@ test:
     - rustup toolchain install stable
 
     - cargo install just
-    - eatmydata just check
     # Docker has 0777 for everything. Deb packages need to be 0755
     - chmod 0755 -R tests/files/cache
     # Create the test .debs then run the tests
