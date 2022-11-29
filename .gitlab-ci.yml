@@ -43,6 +43,7 @@ test:
       libapt-pkg-dev
       clang-format
       codespell
+      cargo
 
     - curl https://sh.rustup.rs -sSf | sh -- /dev/stdin -y
 
@@ -55,4 +56,4 @@ test:
     - chmod 0755 -R tests/files/cache
     # Create the test .debs then run the tests
     - eatmydata just create-test-debs
-    - eatmydata cargo test --no-fail-fast -- --test-threads 1
+    - eatmydata /usr/bin/cargo test --no-fail-fast -- --test-threads 1
