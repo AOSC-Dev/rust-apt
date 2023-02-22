@@ -15,6 +15,12 @@ inline void DepCache::init(DynOperationProgress& callback) const {
 	handle_errors();
 }
 
+inline ActionGroup DepCache::action_group() const noexcept {
+	return ActionGroup{ std::make_unique<PkgActionGroup>(**ptr) };
+}
+
+inline void ActionGroup::release() const noexcept { ptr->release(); }
+
 /// Is the Package upgradable?
 ///
 /// `skip_depcache = true` increases performance by skipping the pkgDepCache
