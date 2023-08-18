@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v0.1.1 (2023-08-18)
 
+<csr-id-b617647574eca3f4856374eb0b4aeea300a00921/>
+<csr-id-ed56e40168ca8b826c2ed81bc164db4bddf056c3/>
+<csr-id-ccf3dcba047042edbe5fa0d6f5de02f21d6950e5/>
+<csr-id-a0277868287910924a03ef80b611d0a23f6caf4f/>
+<csr-id-a60323705ff67d59dc565be87cb12ac765828a88/>
+<csr-id-a5b8ede7ece2d783c8c9d0b8d56cfc3a2ff3883b/>
+<csr-id-52213cdd72b708323a2611ec926d372bd6b6d6df/>
+<csr-id-6d16f0987fd3b1bdda47e2fda487518e8e065d6c/>
+<csr-id-496511ad09ca8f997df28dd1d38971977ed2680d/>
+<csr-id-a26f811dcc2a24238ef2880f1c255649a2488e65/>
+<csr-id-4fccf1b60cbcf8aaac97736caa73fb528906b8f1/>
+<csr-id-594ff856c71050f57518b1b5e19d732358243783/>
+<csr-id-df102936ae6616211ee7ef4a5b16b5a1bf5e30c6/>
+<csr-id-bc911023c3c54feec3e1e12dc9e391696a7d31d4/>
+<csr-id-9dcabf0d9a8869983928a81bfb35361bd86b2cc2/>
+<csr-id-8a6e927f78725d5e30e075843ad46eb0352e3a96/>
+<csr-id-75f94717388e9bebacccba7b1b5c238aecfdaa32/>
+<csr-id-0e55dfaf914ef40fb2a6d542e52490e154a52a50/>
+<csr-id-6dbe4f7a5edfd6b03749620848429b2bdd8b197c/>
+<csr-id-3d66d108b2aff2c273d9beb41daa8bc2031c1b3a/>
+<csr-id-f8c52cba964b172b0878a7eeb7b022f24f6e8bea/>
+<csr-id-46aa9ed07f76ebe4c50de14c4b35914b07b9edd7/>
+<csr-id-d13db3450bf76037e5e5a3bad0b4a9c20b57deb1/>
+<csr-id-3314733ebb4990d447cfb1132150fbfcb7db78c6/>
+<csr-id-9a4e2595911d05914bf28b4113ed8fe594b76485/>
+<csr-id-f40f4d25ba7cea9a495188aead8dc79436f0338b/>
+<csr-id-68694c1aa4f0bfbca7907be54147402eb87340b1/>
+<csr-id-f74ffe7df31df1775eeaec93477259d95f79e9b2/>
+<csr-id-5ca96dd0258b48fb5314fcc18db8375b02483345/>
+<csr-id-bd8977b58df42b444f947cabbc8d430174a3453c/>
+<csr-id-268b7e6dd4f9b9227b14396a88594fda80675730/>
+<csr-id-20c933000c9229c91aa4a7a9e5c0d5862d0e402f/>
+<csr-id-94de3cb53a09dc51155d733a0da26acaaf817875/>
+<csr-id-d30735b71d7c69be4606ff1e3f6007984b039d95/>
+<csr-id-d4779b883332ae406103eba7e1cd6c7567d0b472/>
+<csr-id-641d8be8d3ab5e8f861ba96bfb3f403214d80559/>
+<csr-id-d58ed083f365369548293f7046c23a9353d52725/>
+<csr-id-963b08074284f8005257bb136587f94b0f17f548/>
+<csr-id-9fd24dc76122c25033cdbc930b3bac2782d83f52/>
+<csr-id-7101eb0afd293321e61b314eb0eaf0e2cf1957ef/>
+<csr-id-a2de4eace1a7a58aec9fd71375e8af4154bb0745/>
+<csr-id-6ad07fd488a32941108226a012f565be8cefef49/>
+<csr-id-080c5661140a6208766cab44d2bd607a786ed397/>
+<csr-id-66b553b323c0289051b9c9b6fc61ca1a6e0c26e2/>
+<csr-id-92d947c3986ce211a84722a27ea54b7934098f46/>
+<csr-id-8df9d5fe8b4da3dc0fbef98c1d3d0d5019195d48/>
+<csr-id-d525b4fca66fb3719c50a9c68315848924113edb/>
+<csr-id-7dd85606e66f9cab6418d3d0018bb84333f7fccd/>
+<csr-id-81f5174203f1398950fe1d302d0e165243ac9903/>
+<csr-id-68ad295230fde116a83d981bf6bf596eebf7f49d/>
+<csr-id-8cfc62e14e33a17ce8dabf75134e732f18e06c24/>
+<csr-id-66a2eb141164a401d89d3855d9d4309fb8f2aae3/>
+<csr-id-6b8a9a43a876c9497a521912b8df0aeb0794e67e/>
+<csr-id-c930a7226d04896effc0a20096ec10eaa1ec1737/>
+<csr-id-59b1144921f77870874d7f84b66c0e3513afba67/>
+<csr-id-7103b4e6fe1057ef172b1dff25af354d8efd56f7/>
+<csr-id-8496109b71ea5653a71749f8779f6d002d2516fb/>
+<csr-id-5ca9a50e7e3248e57c43aee465e56c5bc92b11e8/>
+<csr-id-663ae5e0d0bfe6c730d956b25b877c4588c55a5f/>
+<csr-id-1ed41ae5b876f08ad8416c07f491d42a1966af64/>
+
 ### Chore
 
  - <csr-id-b617647574eca3f4856374eb0b4aeea300a00921/> Set version as 0.1.0
@@ -17,6 +78,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - <csr-id-a5b8ede7ece2d783c8c9d0b8d56cfc3a2ff3883b/> Format
  - <csr-id-52213cdd72b708323a2611ec926d372bd6b6d6df/> Dev itertools -> 0.9
  - <csr-id-6d16f0987fd3b1bdda47e2fda487518e8e065d6c/> Bump travis
+
+### Chore
+
+ - <csr-id-191149700fd6805f57d69e7dbc175fc7d22b024d/> Rename all rust-apt to oma-apt to fix build
+ - <csr-id-7abc1f01bcd520243a2bc67adaba244cdada27b4/> Add changelog
 
 ### Documentation
 
@@ -148,8 +214,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 194 commits contributed to the release over the course of 2227 calendar days.
- - 113 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 196 commits contributed to the release over the course of 2227 calendar days.
+ - 115 commits were understood as [conventional](https://www.conventionalcommits.org).
  - 1 unique issue was worked on: [#1](https://github.com/AOSC-Dev/oma-apt/issues/1)
 
 ### Commit Details
@@ -161,6 +227,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  * **[#1](https://github.com/AOSC-Dev/oma-apt/issues/1)**
     - Add a reload() ([`b104724`](https://github.com/AOSC-Dev/oma-apt/commit/b104724ccfc4e6d7877972b4c868f3aa49df0593))
  * **Uncategorized**
+    - Rename all rust-apt to oma-apt to fix build ([`1911497`](https://github.com/AOSC-Dev/oma-apt/commit/191149700fd6805f57d69e7dbc175fc7d22b024d))
+    - Add changelog ([`7abc1f0`](https://github.com/AOSC-Dev/oma-apt/commit/7abc1f01bcd520243a2bc67adaba244cdada27b4))
     - Set version as 0.1.0 ([`b617647`](https://github.com/AOSC-Dev/oma-apt/commit/b617647574eca3f4856374eb0b4aeea300a00921))
     - Set name as oma-apt ([`ed56e40`](https://github.com/AOSC-Dev/oma-apt/commit/ed56e40168ca8b826c2ed81bc164db4bddf056c3))
     - Not copying packages into archive ([`daafbb9`](https://github.com/AOSC-Dev/oma-apt/commit/daafbb945f7402c855fd012880a396d2eef52843))
@@ -275,7 +343,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Several memory leaks ([`c890491`](https://github.com/AOSC-Dev/oma-apt/commit/c89049197b6ce27c7e8b67d592c1a0e4ad9a92bf))
     - Give version structs their own pointer. ([`dfacd8e`](https://github.com/AOSC-Dev/oma-apt/commit/dfacd8edf7ef96072142b33293f8f7265516964b))
     - Rename types and use C++ Opaque Types ([`1ed41ae`](https://github.com/AOSC-Dev/oma-apt/commit/1ed41ae5b876f08ad8416c07f491d42a1966af64))
-    - Initial fork and update to `oma-apt` ([`8834d20`](https://github.com/AOSC-Dev/oma-apt/commit/8834d20473101b593634047151eedeb324e3c6ab))
+    - Initial fork and update to `rust-apt` ([`8834d20`](https://github.com/AOSC-Dev/oma-apt/commit/8834d20473101b593634047151eedeb324e3c6ab))
     - Clippy: unused import ([`a027786`](https://github.com/AOSC-Dev/oma-apt/commit/a0277868287910924a03ef80b611d0a23f6caf4f))
     - Cripple some examples on ye-old-apt ([`a603237`](https://github.com/AOSC-Dev/oma-apt/commit/a60323705ff67d59dc565be87cb12ac765828a88))
     - Missing header(?) ([`99fba90`](https://github.com/AOSC-Dev/oma-apt/commit/99fba9024ab7c0797ddb468e72c42dd612f28934))
