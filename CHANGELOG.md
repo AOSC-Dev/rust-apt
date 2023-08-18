@@ -5,6 +5,362 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.2 (2023-08-18)
+
+### Bug Fixes
+
+ - <csr-id-3b720219fb3f6a41bb39e7d56dc5d93a16364ad6/> Lifetimes for version methods
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 1 commit was understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Lifetimes for version methods ([`3b72021`](https://github.com/AOSC-Dev/oma-apt/commit/3b720219fb3f6a41bb39e7d56dc5d93a16364ad6))
+</details>
+
+## v0.5.1 (2023-02-14)
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 1 commit contributed to the release.
+ - 0 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Remove dev debug print ([`358b89a`](https://github.com/AOSC-Dev/oma-apt/commit/358b89ae28b95e94d412dc561cab97e7dc92fc57))
+</details>
+
+## v0.4.1 (2022-09-01)
+
+### Documentation
+
+ - <csr-id-deb30c69d4bbb28a501cb484eb35d1be190dad99/> Deploy rust documentation on all commits and MRs
+ - <csr-id-a4cf64d32d2031dee7260506d865e889e6831a0d/> Fix error in example
+
+### New Features
+
+ - <csr-id-1ddec8ca3c7c74b91d918d23a21fd8dcd9c3a3f2/> Add cache modification functionality
+ - <csr-id-64e2ccbe1e81729e8113c26cb85a4c0b4908bae5/> Add version origin accessors
+ - <csr-id-8db639ad63831bd1bdc2c63ccf9062a92840dad8/> Get parent package from version
+ - <csr-id-60f93415af5bb8b70805216d3c9b13960f31a95e/> Add bindings for version comparisons
+ - <csr-id-15d83bb77c0829fa2e452e05d4097a603de8fb01/> Add method for package name without arch
+
+### Bug Fixes
+
+ - <csr-id-98e7092451c3c591fa0d89718f05150ceb03b74c/> Typo in comment
+
+### Other
+
+ - <csr-id-4fccf1b60cbcf8aaac97736caa73fb528906b8f1/> Release version `0.4.1`
+   This release also removes its ties with apt-pkg-native-rs as none of the code is from the original project
+ - <csr-id-594ff856c71050f57518b1b5e19d732358243783/> Remove `dev.py` script in favor of justfile
+ - <csr-id-df102936ae6616211ee7ef4a5b16b5a1bf5e30c6/> Add ci configuration
+
+### Refactor
+
+ - <csr-id-9a4e2595911d05914bf28b4113ed8fe594b76485/> Split `raw` bindings into submodules
+ - <csr-id-f40f4d25ba7cea9a495188aead8dc79436f0338b/> Move utils into `util.rs`
+ - <csr-id-68694c1aa4f0bfbca7907be54147402eb87340b1/> Send owned string across cxx barrier
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 15 commits contributed to the release over the course of 46 calendar days.
+ - 61 days passed between releases.
+ - 14 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Release version `0.4.1` ([`4fccf1b`](https://github.com/AOSC-Dev/oma-apt/commit/4fccf1b60cbcf8aaac97736caa73fb528906b8f1))
+    - Add cache modification functionality ([`1ddec8c`](https://github.com/AOSC-Dev/oma-apt/commit/1ddec8ca3c7c74b91d918d23a21fd8dcd9c3a3f2))
+    - Typo in comment ([`98e7092`](https://github.com/AOSC-Dev/oma-apt/commit/98e7092451c3c591fa0d89718f05150ceb03b74c))
+    - Deploy rust documentation on all commits and MRs ([`deb30c6`](https://github.com/AOSC-Dev/oma-apt/commit/deb30c69d4bbb28a501cb484eb35d1be190dad99))
+    - Add version origin accessors ([`64e2ccb`](https://github.com/AOSC-Dev/oma-apt/commit/64e2ccbe1e81729e8113c26cb85a4c0b4908bae5))
+    - Split `raw` bindings into submodules ([`9a4e259`](https://github.com/AOSC-Dev/oma-apt/commit/9a4e2595911d05914bf28b4113ed8fe594b76485))
+    - Remove `dev.py` script in favor of justfile ([`594ff85`](https://github.com/AOSC-Dev/oma-apt/commit/594ff856c71050f57518b1b5e19d732358243783))
+    - Get parent package from version ([`8db639a`](https://github.com/AOSC-Dev/oma-apt/commit/8db639ad63831bd1bdc2c63ccf9062a92840dad8))
+    - Move utils into `util.rs` ([`f40f4d2`](https://github.com/AOSC-Dev/oma-apt/commit/f40f4d25ba7cea9a495188aead8dc79436f0338b))
+    - Send owned string across cxx barrier ([`68694c1`](https://github.com/AOSC-Dev/oma-apt/commit/68694c1aa4f0bfbca7907be54147402eb87340b1))
+    - Add bindings for version comparisons ([`60f9341`](https://github.com/AOSC-Dev/oma-apt/commit/60f93415af5bb8b70805216d3c9b13960f31a95e))
+    - Some tests were also updated during this, along with the dev script. ([`52791ee`](https://github.com/AOSC-Dev/oma-apt/commit/52791eeffe6a16413a3e8cb1bf5ba78da4c2e288))
+    - Add ci configuration ([`df10293`](https://github.com/AOSC-Dev/oma-apt/commit/df102936ae6616211ee7ef4a5b16b5a1bf5e30c6))
+    - Fix error in example ([`a4cf64d`](https://github.com/AOSC-Dev/oma-apt/commit/a4cf64d32d2031dee7260506d865e889e6831a0d))
+    - Add method for package name without arch ([`15d83bb`](https://github.com/AOSC-Dev/oma-apt/commit/15d83bb77c0829fa2e452e05d4097a603de8fb01))
+</details>
+
+## v0.3.0 (2022-07-01)
+
+### Documentation
+
+ - <csr-id-9c137f06c8465e1d17e54ccc3b370e05a0828a2c/> Fix wrong comment in tests
+
+### New Features
+
+ - <csr-id-089b0905d3ccaf9ef91f5b36aa058b23e31f9aa5/> Add bindings to apt's configuration
+ - <csr-id-964e0b617b2ab481372f53ad810b2bf8aa0471ca/> Add support for updating the package list
+ - <csr-id-88c38a545175da83a315138d0811b876e87ddd5c/> Add new sorting methods
+ - <csr-id-f3f332c7326ded1832d64c38e4e8eaf97e98eef8/> Add new methods for cache information
+
+### Bug Fixes
+
+ - <csr-id-6eb01851a69311a647647ff6702b5c4cd1f55d9e/> Pkg list returns only virtual packages instead of including them with real pkgs
+ - <csr-id-57b24dbd699bc41b309cfc26032450f8a9a0676d/> Wrong integer types from some functions
+
+### Other
+
+ - <csr-id-bc911023c3c54feec3e1e12dc9e391696a7d31d4/> Bump version for release
+ - <csr-id-9dcabf0d9a8869983928a81bfb35361bd86b2cc2/> Add `dev.py` to improve workflow
+ - <csr-id-8a6e927f78725d5e30e075843ad46eb0352e3a96/> Greatly improve crate tests
+
+### Performance
+
+ - <csr-id-f14d3508e1f86e57ef400ccb4b05c672711e1926/> Add bool to skip the `pkgDepCache` for `is_upgradable``
+
+### Refactor
+
+ - <csr-id-f74ffe7df31df1775eeaec93477259d95f79e9b2/> Remove unnecessary clippy config
+ - <csr-id-5ca96dd0258b48fb5314fcc18db8375b02483345/> Improve unit_str
+ - <csr-id-bd8977b58df42b444f947cabbc8d430174a3453c/> Add TB to unit_str
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 14 commits contributed to the release over the course of 7 calendar days.
+ - 8 days passed between releases.
+ - 14 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Bump version for release ([`bc91102`](https://github.com/AOSC-Dev/oma-apt/commit/bc911023c3c54feec3e1e12dc9e391696a7d31d4))
+    - Add bindings to apt's configuration ([`089b090`](https://github.com/AOSC-Dev/oma-apt/commit/089b0905d3ccaf9ef91f5b36aa058b23e31f9aa5))
+    - Add support for updating the package list ([`964e0b6`](https://github.com/AOSC-Dev/oma-apt/commit/964e0b617b2ab481372f53ad810b2bf8aa0471ca))
+    - Add new sorting methods ([`88c38a5`](https://github.com/AOSC-Dev/oma-apt/commit/88c38a545175da83a315138d0811b876e87ddd5c))
+    - Fix wrong comment in tests ([`9c137f0`](https://github.com/AOSC-Dev/oma-apt/commit/9c137f06c8465e1d17e54ccc3b370e05a0828a2c))
+    - Remove unnecessary clippy config ([`f74ffe7`](https://github.com/AOSC-Dev/oma-apt/commit/f74ffe7df31df1775eeaec93477259d95f79e9b2))
+    - Add bool to skip the `pkgDepCache` for `is_upgradable`` ([`f14d350`](https://github.com/AOSC-Dev/oma-apt/commit/f14d3508e1f86e57ef400ccb4b05c672711e1926))
+    - Add `dev.py` to improve workflow ([`9dcabf0`](https://github.com/AOSC-Dev/oma-apt/commit/9dcabf0d9a8869983928a81bfb35361bd86b2cc2))
+    - Greatly improve crate tests ([`8a6e927`](https://github.com/AOSC-Dev/oma-apt/commit/8a6e927f78725d5e30e075843ad46eb0352e3a96))
+    - Pkg list returns only virtual packages instead of including them with real pkgs ([`6eb0185`](https://github.com/AOSC-Dev/oma-apt/commit/6eb01851a69311a647647ff6702b5c4cd1f55d9e))
+    - Add new methods for cache information ([`f3f332c`](https://github.com/AOSC-Dev/oma-apt/commit/f3f332c7326ded1832d64c38e4e8eaf97e98eef8))
+    - Improve unit_str ([`5ca96dd`](https://github.com/AOSC-Dev/oma-apt/commit/5ca96dd0258b48fb5314fcc18db8375b02483345))
+    - Wrong integer types from some functions ([`57b24db`](https://github.com/AOSC-Dev/oma-apt/commit/57b24dbd699bc41b309cfc26032450f8a9a0676d))
+    - Add TB to unit_str ([`bd8977b`](https://github.com/AOSC-Dev/oma-apt/commit/bd8977b58df42b444f947cabbc8d430174a3453c))
+</details>
+
+## v0.2.0 (2022-06-23)
+
+### Chore
+
+ - <csr-id-ccf3dcba047042edbe5fa0d6f5de02f21d6950e5/> Add vscode typing helper for c++ files
+
+### Documentation
+
+ - <csr-id-037ada84b5702738c9625d24999d570cca9eed1b/> Update readme
+ - <csr-id-ef3fbc2f14923c5090369e0451630bab03a76646/> Add documentation to methods
+
+### New Features
+
+ - <csr-id-1207611a1c505c882a6c25e0b439ca21bdcd6526/> Allow sorting the packages by name with PackageSort
+ - <csr-id-ce805105c22e1ace6a626759aca6b59aff36aea8/> Add initial support for getting dependencies
+ - <csr-id-e6e889f63a01e974d6320e93c8bf5cb68cc7db1a/> Add provides method to the cache
+ - <csr-id-2b2a8d04db1c5e1f4963e92f8ec07fdc296bf1bc/> Add more depcache state checks
+ - <csr-id-8e223cdfd9ed6965f754f0e6e79a704bd4f4a7f8/> Add ability to get source uris
+ - <csr-id-c47f4a2a166b2bd82323397eab72b3698daf688a/> Add `is_installed` method to package
+ - <csr-id-68f261c7fa99f623967499273184a39bfc494c57/> Add ability to get package hashes
+ - <csr-id-334dfcb1de31dd3f93af768ab43319db4b2f24b9/> Allow `PackageSort` to be 'built'
+ - <csr-id-d616a362bed637b6eadb25f92bc92f845fff30a0/> Add more fields to the package object
+ - <csr-id-cd310e06d067bdc587c255c421492dc91fad317f/> Add more version fields
+   pkgname, size, installed_size, downloadable, id
+ - <csr-id-fcd4f97e4fa45a1ab6acf12860c840f844c1baca/> Add `summary` and `description` for versions
+
+### Other
+
+ - <csr-id-75f94717388e9bebacccba7b1b5c238aecfdaa32/> Bump version for release
+ - <csr-id-0e55dfaf914ef40fb2a6d542e52490e154a52a50/> Convert VerIterators into VersionPtr
+
+### Performance
+
+ - <csr-id-9cd6d06fb5eb4760930d98d5ab7ae63bfa6fc05e/> Sort packages before crossing the barrier
+ - <csr-id-b16ee9a4bb00a920953f49428be522df988b15e9/> Separate depcache into new struct
+
+### Refactor
+
+ - <csr-id-268b7e6dd4f9b9227b14396a88594fda80675730/> Clean up c++ code
+ - <csr-id-20c933000c9229c91aa4a7a9e5c0d5862d0e402f/> Change PackageSort methods to set true
+ - <csr-id-94de3cb53a09dc51155d733a0da26acaaf817875/> Format c++
+ - <csr-id-d30735b71d7c69be4606ff1e3f6007984b039d95/> Organize functions and update docs
+ - <csr-id-d4779b883332ae406103eba7e1cd6c7567d0b472/> Change fields to methods
+ - <csr-id-641d8be8d3ab5e8f861ba96bfb3f403214d80559/> Remove compile commands as it's env dependent
+ - <csr-id-d58ed083f365369548293f7046c23a9353d52725/> Clean and format code
+ - <csr-id-963b08074284f8005257bb136587f94b0f17f548/> Convert cache to unique_ptr
+ - <csr-id-9fd24dc76122c25033cdbc930b3bac2782d83f52/> Change depends to use shared_ptr
+ - <csr-id-7101eb0afd293321e61b314eb0eaf0e2cf1957ef/> Convert Records and PackageFile into UniquePtr
+ - <csr-id-a2de4eace1a7a58aec9fd71375e8af4154bb0745/> Convert PkgIterator into PackagePtr
+ - <csr-id-6ad07fd488a32941108226a012f565be8cefef49/> Remove ver_release
+ - <csr-id-080c5661140a6208766cab44d2bd607a786ed397/> Use unique_ptr for version pointer
+ - <csr-id-66b553b323c0289051b9c9b6fc61ca1a6e0c26e2/> Change `find_name` to use String
+ - <csr-id-92d947c3986ce211a84722a27ea54b7934098f46/> Split Package and Version object into separate file
+ - <csr-id-8df9d5fe8b4da3dc0fbef98c1d3d0d5019195d48/> Change `char`s to `rust::string`
+ - <csr-id-d525b4fca66fb3719c50a9c68315848924113edb/> Simplify the code for the `get` method
+ - <csr-id-7dd85606e66f9cab6418d3d0018bb84333f7fccd/> Use vector for `sorted` instead of `BTreeMap`
+ - <csr-id-81f5174203f1398950fe1d302d0e165243ac9903/> Build pkg pointer iterator on the fly
+ - <csr-id-68ad295230fde116a83d981bf6bf596eebf7f49d/> Convert package getters into iterators
+ - <csr-id-8cfc62e14e33a17ce8dabf75134e732f18e06c24/> Make uri method an iterator
+ - <csr-id-66a2eb141164a401d89d3855d9d4309fb8f2aae3/> Change `get_uris` to just `uris`
+ - <csr-id-6b8a9a43a876c9497a521912b8df0aeb0794e67e/> Change variable names
+ - <csr-id-c930a7226d04896effc0a20096ec10eaa1ec1737/> Store last lookup to prevent unnecessary lookups
+ - <csr-id-59b1144921f77870874d7f84b66c0e3513afba67/> New `rustfmt.toml`
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 43 commits contributed to the release over the course of 44 calendar days.
+ - 47 days passed between releases.
+ - 43 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Bump version for release ([`75f9471`](https://github.com/AOSC-Dev/oma-apt/commit/75f94717388e9bebacccba7b1b5c238aecfdaa32))
+    - Update readme ([`037ada8`](https://github.com/AOSC-Dev/oma-apt/commit/037ada84b5702738c9625d24999d570cca9eed1b))
+    - Clean up c++ code ([`268b7e6`](https://github.com/AOSC-Dev/oma-apt/commit/268b7e6dd4f9b9227b14396a88594fda80675730))
+    - Change PackageSort methods to set true ([`20c9330`](https://github.com/AOSC-Dev/oma-apt/commit/20c933000c9229c91aa4a7a9e5c0d5862d0e402f))
+    - Allow sorting the packages by name with PackageSort ([`1207611`](https://github.com/AOSC-Dev/oma-apt/commit/1207611a1c505c882a6c25e0b439ca21bdcd6526))
+    - Sort packages before crossing the barrier ([`9cd6d06`](https://github.com/AOSC-Dev/oma-apt/commit/9cd6d06fb5eb4760930d98d5ab7ae63bfa6fc05e))
+    - Format c++ ([`94de3cb`](https://github.com/AOSC-Dev/oma-apt/commit/94de3cb53a09dc51155d733a0da26acaaf817875))
+    - Organize functions and update docs ([`d30735b`](https://github.com/AOSC-Dev/oma-apt/commit/d30735b71d7c69be4606ff1e3f6007984b039d95))
+    - Change fields to methods ([`d4779b8`](https://github.com/AOSC-Dev/oma-apt/commit/d4779b883332ae406103eba7e1cd6c7567d0b472))
+    - Remove compile commands as it's env dependent ([`641d8be`](https://github.com/AOSC-Dev/oma-apt/commit/641d8be8d3ab5e8f861ba96bfb3f403214d80559))
+    - Clean and format code ([`d58ed08`](https://github.com/AOSC-Dev/oma-apt/commit/d58ed083f365369548293f7046c23a9353d52725))
+    - Convert cache to unique_ptr ([`963b080`](https://github.com/AOSC-Dev/oma-apt/commit/963b08074284f8005257bb136587f94b0f17f548))
+    - Change depends to use shared_ptr ([`9fd24dc`](https://github.com/AOSC-Dev/oma-apt/commit/9fd24dc76122c25033cdbc930b3bac2782d83f52))
+    - Convert Records and PackageFile into UniquePtr ([`7101eb0`](https://github.com/AOSC-Dev/oma-apt/commit/7101eb0afd293321e61b314eb0eaf0e2cf1957ef))
+    - Convert PkgIterator into PackagePtr ([`a2de4ea`](https://github.com/AOSC-Dev/oma-apt/commit/a2de4eace1a7a58aec9fd71375e8af4154bb0745))
+    - Remove ver_release ([`6ad07fd`](https://github.com/AOSC-Dev/oma-apt/commit/6ad07fd488a32941108226a012f565be8cefef49))
+    - Use unique_ptr for version pointer ([`080c566`](https://github.com/AOSC-Dev/oma-apt/commit/080c5661140a6208766cab44d2bd607a786ed397))
+    - Convert VerIterators into VersionPtr ([`0e55dfa`](https://github.com/AOSC-Dev/oma-apt/commit/0e55dfaf914ef40fb2a6d542e52490e154a52a50))
+    - Add initial support for getting dependencies ([`ce80510`](https://github.com/AOSC-Dev/oma-apt/commit/ce805105c22e1ace6a626759aca6b59aff36aea8))
+    - Add vscode typing helper for c++ files ([`ccf3dcb`](https://github.com/AOSC-Dev/oma-apt/commit/ccf3dcba047042edbe5fa0d6f5de02f21d6950e5))
+    - Add provides method to the cache ([`e6e889f`](https://github.com/AOSC-Dev/oma-apt/commit/e6e889f63a01e974d6320e93c8bf5cb68cc7db1a))
+    - Change `find_name` to use String ([`66b553b`](https://github.com/AOSC-Dev/oma-apt/commit/66b553b323c0289051b9c9b6fc61ca1a6e0c26e2))
+    - Split Package and Version object into separate file ([`92d947c`](https://github.com/AOSC-Dev/oma-apt/commit/92d947c3986ce211a84722a27ea54b7934098f46))
+    - Add more depcache state checks ([`2b2a8d0`](https://github.com/AOSC-Dev/oma-apt/commit/2b2a8d04db1c5e1f4963e92f8ec07fdc296bf1bc))
+    - Change `char`s to `rust::string` ([`8df9d5f`](https://github.com/AOSC-Dev/oma-apt/commit/8df9d5fe8b4da3dc0fbef98c1d3d0d5019195d48))
+    - Separate depcache into new struct ([`b16ee9a`](https://github.com/AOSC-Dev/oma-apt/commit/b16ee9a4bb00a920953f49428be522df988b15e9))
+    - Add ability to get source uris ([`8e223cd`](https://github.com/AOSC-Dev/oma-apt/commit/8e223cdfd9ed6965f754f0e6e79a704bd4f4a7f8))
+    - Add `is_installed` method to package ([`c47f4a2`](https://github.com/AOSC-Dev/oma-apt/commit/c47f4a2a166b2bd82323397eab72b3698daf688a))
+    - Simplify the code for the `get` method ([`d525b4f`](https://github.com/AOSC-Dev/oma-apt/commit/d525b4fca66fb3719c50a9c68315848924113edb))
+    - Use vector for `sorted` instead of `BTreeMap` ([`7dd8560`](https://github.com/AOSC-Dev/oma-apt/commit/7dd85606e66f9cab6418d3d0018bb84333f7fccd))
+    - Build pkg pointer iterator on the fly ([`81f5174`](https://github.com/AOSC-Dev/oma-apt/commit/81f5174203f1398950fe1d302d0e165243ac9903))
+    - Convert package getters into iterators ([`68ad295`](https://github.com/AOSC-Dev/oma-apt/commit/68ad295230fde116a83d981bf6bf596eebf7f49d))
+    - Add documentation to methods ([`ef3fbc2`](https://github.com/AOSC-Dev/oma-apt/commit/ef3fbc2f14923c5090369e0451630bab03a76646))
+    - Make uri method an iterator ([`8cfc62e`](https://github.com/AOSC-Dev/oma-apt/commit/8cfc62e14e33a17ce8dabf75134e732f18e06c24))
+    - Add ability to get package hashes ([`68f261c`](https://github.com/AOSC-Dev/oma-apt/commit/68f261c7fa99f623967499273184a39bfc494c57))
+    - Change `get_uris` to just `uris` ([`66a2eb1`](https://github.com/AOSC-Dev/oma-apt/commit/66a2eb141164a401d89d3855d9d4309fb8f2aae3))
+    - Allow `PackageSort` to be 'built' ([`334dfcb`](https://github.com/AOSC-Dev/oma-apt/commit/334dfcb1de31dd3f93af768ab43319db4b2f24b9))
+    - Add more fields to the package object ([`d616a36`](https://github.com/AOSC-Dev/oma-apt/commit/d616a362bed637b6eadb25f92bc92f845fff30a0))
+    - Change variable names ([`6b8a9a4`](https://github.com/AOSC-Dev/oma-apt/commit/6b8a9a43a876c9497a521912b8df0aeb0794e67e))
+    - Store last lookup to prevent unnecessary lookups ([`c930a72`](https://github.com/AOSC-Dev/oma-apt/commit/c930a7226d04896effc0a20096ec10eaa1ec1737))
+    - New `rustfmt.toml` ([`59b1144`](https://github.com/AOSC-Dev/oma-apt/commit/59b1144921f77870874d7f84b66c0e3513afba67))
+    - Add more version fields ([`cd310e0`](https://github.com/AOSC-Dev/oma-apt/commit/cd310e06d067bdc587c255c421492dc91fad317f))
+    - Add `summary` and `description` for versions ([`fcd4f97`](https://github.com/AOSC-Dev/oma-apt/commit/fcd4f97e4fa45a1ab6acf12860c840f844c1baca))
+</details>
+
+## v0.5.0 (2023-02-14)
+
+### New Features
+
+ - <csr-id-119ded0d276f7951f35d08bc2ddf2cb4ebda5807/> Allow globbing of packages
+ - <csr-id-430c5aa8f040b2e73fa5bee6f08e037228608c9d/> Add support for installing local '.deb' files
+ - <csr-id-81216c920edce01a9d22f496fe13d661c8e67561/> Ability to parse files in DEB822 format
+ - <csr-id-cda4df82ec77eb599359fa7eebd5723d1807c053/> Add info accessor for pkg records
+
+### Bug Fixes
+
+ - <csr-id-8dd5061314ff7fa699a3b0c3d0658a8d66004603/> Remove test print
+ - <csr-id-7f9c9589b6bf454b47c41e14656665d86438b579/> Performance regression from `DepCache` init
+ - <csr-id-3b7f86dd01c14b86470b23d9f91a90f71d795053/> Invalid memory reference inserting non deb files into the cache
+
+### Other
+
+ - <csr-id-a26f811dcc2a24238ef2880f1c255649a2488e65/> Speed up with cache
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 19 commits contributed to the release over the course of 158 calendar days.
+ - 165 days passed between releases.
+ - 8 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **Uncategorized**
+    - Release `0.5.0` ([`12db48d`](https://github.com/AOSC-Dev/oma-apt/commit/12db48ddc102cc9ec9d42d0c1c0aae3d9eef7bfd))
+    - Allow Packages and Versions to be put in a hashmap ([`6a8146e`](https://github.com/AOSC-Dev/oma-apt/commit/6a8146e47a755ff7e219d0bc28fc1fe2161b044b))
+    - Add higher level struct for Provides ([`dc09d71`](https://github.com/AOSC-Dev/oma-apt/commit/dc09d718a4023886049e1194e6b3722ab9230f8b))
+    - Fix candidate returning wrong version after set_candidate ([`5246a09`](https://github.com/AOSC-Dev/oma-apt/commit/5246a09f9dc7e6e74715d8fae23a06374856a194))
+    - Change `full_name` => `fullname` ([`f05f916`](https://github.com/AOSC-Dev/oma-apt/commit/f05f916ca5c75a1412ed4596462f79a5f41e86d1))
+    - Fix version list of virtual packages causing panic ([`b983950`](https://github.com/AOSC-Dev/oma-apt/commit/b98395000a0e8ee4b6573b29d0544dd7ffc0b25a))
+    - Clippy changes ([`9632a55`](https://github.com/AOSC-Dev/oma-apt/commit/9632a555d3f15b20648ead2a7850cca3b971bafe))
+    - Major Restructure ([`087ea68`](https://github.com/AOSC-Dev/oma-apt/commit/087ea68534f03499920a55acdf5e51d3c3f41fec))
+    - Fix issue with resolving '.deb' packages ([`2f1633d`](https://github.com/AOSC-Dev/oma-apt/commit/2f1633d26c9dee69d5852d1fcbf84b2586876555))
+    - Fix incorrect filename in   'build.rs' ([`d782cb0`](https://github.com/AOSC-Dev/oma-apt/commit/d782cb01814c747c3dde82b23a8d4eac200bbff8))
+    - Remove test print ([`8dd5061`](https://github.com/AOSC-Dev/oma-apt/commit/8dd5061314ff7fa699a3b0c3d0658a8d66004603))
+    - Performance regression from `DepCache` init ([`7f9c958`](https://github.com/AOSC-Dev/oma-apt/commit/7f9c9589b6bf454b47c41e14656665d86438b579))
+    - Allow globbing of packages ([`119ded0`](https://github.com/AOSC-Dev/oma-apt/commit/119ded0d276f7951f35d08bc2ddf2cb4ebda5807))
+    - Ensure a blank string isn't passed in to TagSection instances ([`7750594`](https://github.com/AOSC-Dev/oma-apt/commit/7750594be3ca30ee29804bf46cf76896dd61655b))
+    - Invalid memory reference inserting non deb files into the cache ([`3b7f86d`](https://github.com/AOSC-Dev/oma-apt/commit/3b7f86dd01c14b86470b23d9f91a90f71d795053))
+    - Speed up with cache ([`a26f811`](https://github.com/AOSC-Dev/oma-apt/commit/a26f811dcc2a24238ef2880f1c255649a2488e65))
+    - Add support for installing local '.deb' files ([`430c5aa`](https://github.com/AOSC-Dev/oma-apt/commit/430c5aa8f040b2e73fa5bee6f08e037228608c9d))
+    - Ability to parse files in DEB822 format ([`81216c9`](https://github.com/AOSC-Dev/oma-apt/commit/81216c920edce01a9d22f496fe13d661c8e67561))
+    - Add info accessor for pkg records ([`cda4df8`](https://github.com/AOSC-Dev/oma-apt/commit/cda4df82ec77eb599359fa7eebd5723d1807c053))
+</details>
+
 ## v0.1.1 (2023-08-18)
 
 <csr-id-b617647574eca3f4856374eb0b4aeea300a00921/>
@@ -67,6 +423,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <csr-id-5ca9a50e7e3248e57c43aee465e56c5bc92b11e8/>
 <csr-id-663ae5e0d0bfe6c730d956b25b877c4588c55a5f/>
 <csr-id-1ed41ae5b876f08ad8416c07f491d42a1966af64/>
+<csr-id-191149700fd6805f57d69e7dbc175fc7d22b024d/>
+<csr-id-7abc1f01bcd520243a2bc67adaba244cdada27b4/>
 
 ### Chore
 
@@ -214,9 +572,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <csr-read-only-do-not-edit/>
 
- - 196 commits contributed to the release over the course of 2227 calendar days.
- - 115 commits were understood as [conventional](https://www.conventionalcommits.org).
- - 1 unique issue was worked on: [#1](https://github.com/AOSC-Dev/oma-apt/issues/1)
+ - 16 commits contributed to the release over the course of 179 calendar days.
+ - 184 days passed between releases.
+ - 15 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 0 issues like '(#ID)' were seen in commit messages
 
 ### Commit Details
 
@@ -224,9 +583,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <details><summary>view details</summary>
 
- * **[#1](https://github.com/AOSC-Dev/oma-apt/issues/1)**
-    - Add a reload() ([`b104724`](https://github.com/AOSC-Dev/oma-apt/commit/b104724ccfc4e6d7877972b4c868f3aa49df0593))
  * **Uncategorized**
+    - Release oma-apt v0.1.1 ([`f6eb3d3`](https://github.com/AOSC-Dev/oma-apt/commit/f6eb3d34a04e00b7966a44b85fad33bbb01d8429))
     - Rename all rust-apt to oma-apt to fix build ([`1911497`](https://github.com/AOSC-Dev/oma-apt/commit/191149700fd6805f57d69e7dbc175fc7d22b024d))
     - Add changelog ([`7abc1f0`](https://github.com/AOSC-Dev/oma-apt/commit/7abc1f01bcd520243a2bc67adaba244cdada27b4))
     - Set version as 0.1.0 ([`b617647`](https://github.com/AOSC-Dev/oma-apt/commit/b617647574eca3f4856374eb0b4aeea300a00921))
@@ -242,98 +600,64 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Add `fix_broken` method on the cache. ([`51ac3ea`](https://github.com/AOSC-Dev/oma-apt/commit/51ac3eae5fd5997ecdd807a851b151612470dfe5))
     - Update `README.md` ([`e63f807`](https://github.com/AOSC-Dev/oma-apt/commit/e63f8076bb5b67afba647ec0dce63839066dd9f5))
     - Panic when generating depends for a package that has none ([`1aa839d`](https://github.com/AOSC-Dev/oma-apt/commit/1aa839d108427bc903f6ce1b0ef7d4c663b0d235))
-    - Remove dev debug print ([`358b89a`](https://github.com/AOSC-Dev/oma-apt/commit/358b89ae28b95e94d412dc561cab97e7dc92fc57))
-    - Release `0.5.0` ([`12db48d`](https://github.com/AOSC-Dev/oma-apt/commit/12db48ddc102cc9ec9d42d0c1c0aae3d9eef7bfd))
-    - Allow Packages and Versions to be put in a hashmap ([`6a8146e`](https://github.com/AOSC-Dev/oma-apt/commit/6a8146e47a755ff7e219d0bc28fc1fe2161b044b))
-    - Add higher level struct for Provides ([`dc09d71`](https://github.com/AOSC-Dev/oma-apt/commit/dc09d718a4023886049e1194e6b3722ab9230f8b))
-    - Fix candidate returning wrong version after set_candidate ([`5246a09`](https://github.com/AOSC-Dev/oma-apt/commit/5246a09f9dc7e6e74715d8fae23a06374856a194))
-    - Change `full_name` => `fullname` ([`f05f916`](https://github.com/AOSC-Dev/oma-apt/commit/f05f916ca5c75a1412ed4596462f79a5f41e86d1))
-    - Fix version list of virtual packages causing panic ([`b983950`](https://github.com/AOSC-Dev/oma-apt/commit/b98395000a0e8ee4b6573b29d0544dd7ffc0b25a))
-    - Clippy changes ([`9632a55`](https://github.com/AOSC-Dev/oma-apt/commit/9632a555d3f15b20648ead2a7850cca3b971bafe))
-    - Major Restructure ([`087ea68`](https://github.com/AOSC-Dev/oma-apt/commit/087ea68534f03499920a55acdf5e51d3c3f41fec))
-    - Fix issue with resolving '.deb' packages ([`2f1633d`](https://github.com/AOSC-Dev/oma-apt/commit/2f1633d26c9dee69d5852d1fcbf84b2586876555))
-    - Fix incorrect filename in   'build.rs' ([`d782cb0`](https://github.com/AOSC-Dev/oma-apt/commit/d782cb01814c747c3dde82b23a8d4eac200bbff8))
-    - Remove test print ([`8dd5061`](https://github.com/AOSC-Dev/oma-apt/commit/8dd5061314ff7fa699a3b0c3d0658a8d66004603))
-    - Performance regression from `DepCache` init ([`7f9c958`](https://github.com/AOSC-Dev/oma-apt/commit/7f9c9589b6bf454b47c41e14656665d86438b579))
-    - Allow globbing of packages ([`119ded0`](https://github.com/AOSC-Dev/oma-apt/commit/119ded0d276f7951f35d08bc2ddf2cb4ebda5807))
-    - Ensure a blank string isn't passed in to TagSection instances ([`7750594`](https://github.com/AOSC-Dev/oma-apt/commit/7750594be3ca30ee29804bf46cf76896dd61655b))
-    - Invalid memory reference inserting non deb files into the cache ([`3b7f86d`](https://github.com/AOSC-Dev/oma-apt/commit/3b7f86dd01c14b86470b23d9f91a90f71d795053))
-    - Speed up with cache ([`a26f811`](https://github.com/AOSC-Dev/oma-apt/commit/a26f811dcc2a24238ef2880f1c255649a2488e65))
-    - Add support for installing local '.deb' files ([`430c5aa`](https://github.com/AOSC-Dev/oma-apt/commit/430c5aa8f040b2e73fa5bee6f08e037228608c9d))
-    - Ability to parse files in DEB822 format ([`81216c9`](https://github.com/AOSC-Dev/oma-apt/commit/81216c920edce01a9d22f496fe13d661c8e67561))
-    - Add info accessor for pkg records ([`cda4df8`](https://github.com/AOSC-Dev/oma-apt/commit/cda4df82ec77eb599359fa7eebd5723d1807c053))
-    - Release version `0.4.1` ([`4fccf1b`](https://github.com/AOSC-Dev/oma-apt/commit/4fccf1b60cbcf8aaac97736caa73fb528906b8f1))
-    - Add cache modification functionality ([`1ddec8c`](https://github.com/AOSC-Dev/oma-apt/commit/1ddec8ca3c7c74b91d918d23a21fd8dcd9c3a3f2))
-    - Typo in comment ([`98e7092`](https://github.com/AOSC-Dev/oma-apt/commit/98e7092451c3c591fa0d89718f05150ceb03b74c))
-    - Deploy rust documentation on all commits and MRs ([`deb30c6`](https://github.com/AOSC-Dev/oma-apt/commit/deb30c69d4bbb28a501cb484eb35d1be190dad99))
-    - Add version origin accessors ([`64e2ccb`](https://github.com/AOSC-Dev/oma-apt/commit/64e2ccbe1e81729e8113c26cb85a4c0b4908bae5))
-    - Split `raw` bindings into submodules ([`9a4e259`](https://github.com/AOSC-Dev/oma-apt/commit/9a4e2595911d05914bf28b4113ed8fe594b76485))
-    - Remove `dev.py` script in favor of justfile ([`594ff85`](https://github.com/AOSC-Dev/oma-apt/commit/594ff856c71050f57518b1b5e19d732358243783))
-    - Get parent package from version ([`8db639a`](https://github.com/AOSC-Dev/oma-apt/commit/8db639ad63831bd1bdc2c63ccf9062a92840dad8))
-    - Move utils into `util.rs` ([`f40f4d2`](https://github.com/AOSC-Dev/oma-apt/commit/f40f4d25ba7cea9a495188aead8dc79436f0338b))
-    - Send owned string across cxx barrier ([`68694c1`](https://github.com/AOSC-Dev/oma-apt/commit/68694c1aa4f0bfbca7907be54147402eb87340b1))
-    - Add bindings for version comparisons ([`60f9341`](https://github.com/AOSC-Dev/oma-apt/commit/60f93415af5bb8b70805216d3c9b13960f31a95e))
-    - Some tests were also updated during this, along with the dev script. ([`52791ee`](https://github.com/AOSC-Dev/oma-apt/commit/52791eeffe6a16413a3e8cb1bf5ba78da4c2e288))
-    - Add ci configuration ([`df10293`](https://github.com/AOSC-Dev/oma-apt/commit/df102936ae6616211ee7ef4a5b16b5a1bf5e30c6))
-    - Fix error in example ([`a4cf64d`](https://github.com/AOSC-Dev/oma-apt/commit/a4cf64d32d2031dee7260506d865e889e6831a0d))
-    - Add method for package name without arch ([`15d83bb`](https://github.com/AOSC-Dev/oma-apt/commit/15d83bb77c0829fa2e452e05d4097a603de8fb01))
-    - Bump version for release ([`bc91102`](https://github.com/AOSC-Dev/oma-apt/commit/bc911023c3c54feec3e1e12dc9e391696a7d31d4))
-    - Add bindings to apt's configuration ([`089b090`](https://github.com/AOSC-Dev/oma-apt/commit/089b0905d3ccaf9ef91f5b36aa058b23e31f9aa5))
-    - Add support for updating the package list ([`964e0b6`](https://github.com/AOSC-Dev/oma-apt/commit/964e0b617b2ab481372f53ad810b2bf8aa0471ca))
-    - Add new sorting methods ([`88c38a5`](https://github.com/AOSC-Dev/oma-apt/commit/88c38a545175da83a315138d0811b876e87ddd5c))
-    - Fix wrong comment in tests ([`9c137f0`](https://github.com/AOSC-Dev/oma-apt/commit/9c137f06c8465e1d17e54ccc3b370e05a0828a2c))
-    - Remove unnecessary clippy config ([`f74ffe7`](https://github.com/AOSC-Dev/oma-apt/commit/f74ffe7df31df1775eeaec93477259d95f79e9b2))
-    - Add bool to skip the `pkgDepCache` for `is_upgradable`` ([`f14d350`](https://github.com/AOSC-Dev/oma-apt/commit/f14d3508e1f86e57ef400ccb4b05c672711e1926))
-    - Add `dev.py` to improve workflow ([`9dcabf0`](https://github.com/AOSC-Dev/oma-apt/commit/9dcabf0d9a8869983928a81bfb35361bd86b2cc2))
-    - Greatly improve crate tests ([`8a6e927`](https://github.com/AOSC-Dev/oma-apt/commit/8a6e927f78725d5e30e075843ad46eb0352e3a96))
-    - Pkg list returns only virtual packages instead of including them with real pkgs ([`6eb0185`](https://github.com/AOSC-Dev/oma-apt/commit/6eb01851a69311a647647ff6702b5c4cd1f55d9e))
-    - Add new methods for cache information ([`f3f332c`](https://github.com/AOSC-Dev/oma-apt/commit/f3f332c7326ded1832d64c38e4e8eaf97e98eef8))
-    - Improve unit_str ([`5ca96dd`](https://github.com/AOSC-Dev/oma-apt/commit/5ca96dd0258b48fb5314fcc18db8375b02483345))
-    - Wrong integer types from some functions ([`57b24db`](https://github.com/AOSC-Dev/oma-apt/commit/57b24dbd699bc41b309cfc26032450f8a9a0676d))
-    - Add TB to unit_str ([`bd8977b`](https://github.com/AOSC-Dev/oma-apt/commit/bd8977b58df42b444f947cabbc8d430174a3453c))
-    - Bump version for release ([`75f9471`](https://github.com/AOSC-Dev/oma-apt/commit/75f94717388e9bebacccba7b1b5c238aecfdaa32))
-    - Update readme ([`037ada8`](https://github.com/AOSC-Dev/oma-apt/commit/037ada84b5702738c9625d24999d570cca9eed1b))
-    - Clean up c++ code ([`268b7e6`](https://github.com/AOSC-Dev/oma-apt/commit/268b7e6dd4f9b9227b14396a88594fda80675730))
-    - Change PackageSort methods to set true ([`20c9330`](https://github.com/AOSC-Dev/oma-apt/commit/20c933000c9229c91aa4a7a9e5c0d5862d0e402f))
-    - Allow sorting the packages by name with PackageSort ([`1207611`](https://github.com/AOSC-Dev/oma-apt/commit/1207611a1c505c882a6c25e0b439ca21bdcd6526))
-    - Sort packages before crossing the barrier ([`9cd6d06`](https://github.com/AOSC-Dev/oma-apt/commit/9cd6d06fb5eb4760930d98d5ab7ae63bfa6fc05e))
-    - Format c++ ([`94de3cb`](https://github.com/AOSC-Dev/oma-apt/commit/94de3cb53a09dc51155d733a0da26acaaf817875))
-    - Organize functions and update docs ([`d30735b`](https://github.com/AOSC-Dev/oma-apt/commit/d30735b71d7c69be4606ff1e3f6007984b039d95))
-    - Change fields to methods ([`d4779b8`](https://github.com/AOSC-Dev/oma-apt/commit/d4779b883332ae406103eba7e1cd6c7567d0b472))
-    - Remove compile commands as it's env dependent ([`641d8be`](https://github.com/AOSC-Dev/oma-apt/commit/641d8be8d3ab5e8f861ba96bfb3f403214d80559))
-    - Clean and format code ([`d58ed08`](https://github.com/AOSC-Dev/oma-apt/commit/d58ed083f365369548293f7046c23a9353d52725))
-    - Convert cache to unique_ptr ([`963b080`](https://github.com/AOSC-Dev/oma-apt/commit/963b08074284f8005257bb136587f94b0f17f548))
-    - Change depends to use shared_ptr ([`9fd24dc`](https://github.com/AOSC-Dev/oma-apt/commit/9fd24dc76122c25033cdbc930b3bac2782d83f52))
-    - Convert Records and PackageFile into UniquePtr ([`7101eb0`](https://github.com/AOSC-Dev/oma-apt/commit/7101eb0afd293321e61b314eb0eaf0e2cf1957ef))
-    - Convert PkgIterator into PackagePtr ([`a2de4ea`](https://github.com/AOSC-Dev/oma-apt/commit/a2de4eace1a7a58aec9fd71375e8af4154bb0745))
-    - Remove ver_release ([`6ad07fd`](https://github.com/AOSC-Dev/oma-apt/commit/6ad07fd488a32941108226a012f565be8cefef49))
-    - Use unique_ptr for version pointer ([`080c566`](https://github.com/AOSC-Dev/oma-apt/commit/080c5661140a6208766cab44d2bd607a786ed397))
-    - Convert VerIterators into VersionPtr ([`0e55dfa`](https://github.com/AOSC-Dev/oma-apt/commit/0e55dfaf914ef40fb2a6d542e52490e154a52a50))
-    - Add initial support for getting dependencies ([`ce80510`](https://github.com/AOSC-Dev/oma-apt/commit/ce805105c22e1ace6a626759aca6b59aff36aea8))
-    - Add vscode typing helper for c++ files ([`ccf3dcb`](https://github.com/AOSC-Dev/oma-apt/commit/ccf3dcba047042edbe5fa0d6f5de02f21d6950e5))
-    - Add provides method to the cache ([`e6e889f`](https://github.com/AOSC-Dev/oma-apt/commit/e6e889f63a01e974d6320e93c8bf5cb68cc7db1a))
-    - Change `find_name` to use String ([`66b553b`](https://github.com/AOSC-Dev/oma-apt/commit/66b553b323c0289051b9c9b6fc61ca1a6e0c26e2))
-    - Split Package and Version object into separate file ([`92d947c`](https://github.com/AOSC-Dev/oma-apt/commit/92d947c3986ce211a84722a27ea54b7934098f46))
-    - Add more depcache state checks ([`2b2a8d0`](https://github.com/AOSC-Dev/oma-apt/commit/2b2a8d04db1c5e1f4963e92f8ec07fdc296bf1bc))
-    - Change `char`s to `rust::string` ([`8df9d5f`](https://github.com/AOSC-Dev/oma-apt/commit/8df9d5fe8b4da3dc0fbef98c1d3d0d5019195d48))
-    - Separate depcache into new struct ([`b16ee9a`](https://github.com/AOSC-Dev/oma-apt/commit/b16ee9a4bb00a920953f49428be522df988b15e9))
-    - Add ability to get source uris ([`8e223cd`](https://github.com/AOSC-Dev/oma-apt/commit/8e223cdfd9ed6965f754f0e6e79a704bd4f4a7f8))
-    - Add `is_installed` method to package ([`c47f4a2`](https://github.com/AOSC-Dev/oma-apt/commit/c47f4a2a166b2bd82323397eab72b3698daf688a))
-    - Simplify the code for the `get` method ([`d525b4f`](https://github.com/AOSC-Dev/oma-apt/commit/d525b4fca66fb3719c50a9c68315848924113edb))
-    - Use vector for `sorted` instead of `BTreeMap` ([`7dd8560`](https://github.com/AOSC-Dev/oma-apt/commit/7dd85606e66f9cab6418d3d0018bb84333f7fccd))
-    - Build pkg pointer iterator on the fly ([`81f5174`](https://github.com/AOSC-Dev/oma-apt/commit/81f5174203f1398950fe1d302d0e165243ac9903))
-    - Convert package getters into iterators ([`68ad295`](https://github.com/AOSC-Dev/oma-apt/commit/68ad295230fde116a83d981bf6bf596eebf7f49d))
-    - Add documentation to methods ([`ef3fbc2`](https://github.com/AOSC-Dev/oma-apt/commit/ef3fbc2f14923c5090369e0451630bab03a76646))
-    - Make uri method an iterator ([`8cfc62e`](https://github.com/AOSC-Dev/oma-apt/commit/8cfc62e14e33a17ce8dabf75134e732f18e06c24))
-    - Add ability to get package hashes ([`68f261c`](https://github.com/AOSC-Dev/oma-apt/commit/68f261c7fa99f623967499273184a39bfc494c57))
-    - Change `get_uris` to just `uris` ([`66a2eb1`](https://github.com/AOSC-Dev/oma-apt/commit/66a2eb141164a401d89d3855d9d4309fb8f2aae3))
-    - Allow `PackageSort` to be 'built' ([`334dfcb`](https://github.com/AOSC-Dev/oma-apt/commit/334dfcb1de31dd3f93af768ab43319db4b2f24b9))
-    - Add more fields to the package object ([`d616a36`](https://github.com/AOSC-Dev/oma-apt/commit/d616a362bed637b6eadb25f92bc92f845fff30a0))
-    - Change variable names ([`6b8a9a4`](https://github.com/AOSC-Dev/oma-apt/commit/6b8a9a43a876c9497a521912b8df0aeb0794e67e))
-    - Store last lookup to prevent unnecessary lookups ([`c930a72`](https://github.com/AOSC-Dev/oma-apt/commit/c930a7226d04896effc0a20096ec10eaa1ec1737))
-    - New `rustfmt.toml` ([`59b1144`](https://github.com/AOSC-Dev/oma-apt/commit/59b1144921f77870874d7f84b66c0e3513afba67))
-    - Add more version fields ([`cd310e0`](https://github.com/AOSC-Dev/oma-apt/commit/cd310e06d067bdc587c255c421492dc91fad317f))
-    - Add `summary` and `description` for versions ([`fcd4f97`](https://github.com/AOSC-Dev/oma-apt/commit/fcd4f97e4fa45a1ab6acf12860c840f844c1baca))
+</details>
+
+## v0.1.0 (2022-05-06)
+
+### Chore
+
+ - <csr-id-a0277868287910924a03ef80b611d0a23f6caf4f/> Clippy: unused import
+ - <csr-id-a60323705ff67d59dc565be87cb12ac765828a88/> Cripple some examples on ye-old-apt
+ - <csr-id-a5b8ede7ece2d783c8c9d0b8d56cfc3a2ff3883b/> Format
+ - <csr-id-52213cdd72b708323a2611ec926d372bd6b6d6df/> Dev itertools -> 0.9
+ - <csr-id-6d16f0987fd3b1bdda47e2fda487518e8e065d6c/> Bump travis
+
+### New Features
+
+ - <csr-id-7f30d9ba0127bf44cde80f5456608f25dd23f361/> Add `is_installed` on the version
+
+### Bug Fixes
+
+ - <csr-id-c89049197b6ce27c7e8b67d592c1a0e4ad9a92bf/> Several memory leaks
+ - <csr-id-dfacd8edf7ef96072142b33293f8f7265516964b/> Give version structs their own pointer.
+ - <csr-id-99fba9024ab7c0797ddb468e72c42dd612f28934/> Missing header(?)
+   This seems to be required on 20.04.
+ - <csr-id-ecd60906d21b8bb65dd845b3e663053ae8098a49/> Extra headers required on newer apt
+
+### Other
+
+ - <csr-id-6dbe4f7a5edfd6b03749620848429b2bdd8b197c/> Add simple test
+ - <csr-id-3d66d108b2aff2c273d9beb41daa8bc2031c1b3a/> Work around https://github.com/rust-lang/rust/pull/57018
+ - <csr-id-f8c52cba964b172b0878a7eeb7b022f24f6e8bea/> Bump to xenial
+ - <csr-id-46aa9ed07f76ebe4c50de14c4b35914b07b9edd7/> Support building with very old apt
+ - <csr-id-d13db3450bf76037e5e5a3bad0b4a9c20b57deb1/> Version exposed
+ - <csr-id-3314733ebb4990d447cfb1132150fbfcb7db78c6/> Fixed iterators, "origin"-like concept exposed
+
+### Refactor
+
+ - <csr-id-7103b4e6fe1057ef172b1dff25af354d8efd56f7/> Change indentation to the superior tab
+ - <csr-id-8496109b71ea5653a71749f8779f6d002d2516fb/> Comment unused functions
+ - <csr-id-5ca9a50e7e3248e57c43aee465e56c5bc92b11e8/> Satisfy clippy and organize code
+ - <csr-id-663ae5e0d0bfe6c730d956b25b877c4588c55a5f/> Use `Rc<RefCell>` for the records struct.
+ - <csr-id-1ed41ae5b876f08ad8416c07f491d42a1966af64/> Rename types and use C++ Opaque Types
+
+### Commit Statistics
+
+<csr-read-only-do-not-edit/>
+
+ - 89 commits contributed to the release over the course of 1759 calendar days.
+ - 21 commits were understood as [conventional](https://www.conventionalcommits.org).
+ - 1 unique issue was worked on: [#1](https://github.com/AOSC-Dev/oma-apt/issues/1)
+
+### Commit Details
+
+<csr-read-only-do-not-edit/>
+
+<details><summary>view details</summary>
+
+ * **[#1](https://github.com/AOSC-Dev/oma-apt/issues/1)**
+    - Add a reload() ([`b104724`](https://github.com/AOSC-Dev/oma-apt/commit/b104724ccfc4e6d7877972b4c868f3aa49df0593))
+ * **Uncategorized**
     - Change indentation to the superior tab ([`7103b4e`](https://github.com/AOSC-Dev/oma-apt/commit/7103b4e6fe1057ef172b1dff25af354d8efd56f7))
     - Comment unused functions ([`8496109`](https://github.com/AOSC-Dev/oma-apt/commit/8496109b71ea5653a71749f8779f6d002d2516fb))
     - Add `is_installed` on the version ([`7f30d9b`](https://github.com/AOSC-Dev/oma-apt/commit/7f30d9ba0127bf44cde80f5456608f25dd23f361))
