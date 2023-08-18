@@ -2,10 +2,10 @@ mod cache {
 	use std::collections::HashMap;
 	use std::fmt::Write as _;
 
-	use rust_apt::cache::*;
-	use rust_apt::new_cache;
-	use rust_apt::package::DepType;
-	use rust_apt::util::*;
+	use oma_apt::cache::*;
+	use oma_apt::new_cache;
+	use oma_apt::package::DepType;
+	use oma_apt::util::*;
 
 	#[test]
 	fn test_raw_pkg() {

@@ -1,7 +1,7 @@
 mod util {
 	use std::cmp::Ordering;
 
-	use rust_apt::util;
+	use oma_apt::util;
 
 	#[test]
 	fn cmp_versions() {

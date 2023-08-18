@@ -1,5 +1,5 @@
 mod tagfile {
-	use rust_apt::tagfile::{self, TagSection};
+	use oma_apt::tagfile::{self, TagSection};
 
 	#[test]
 	fn correct() {

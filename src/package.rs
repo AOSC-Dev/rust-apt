@@ -43,8 +43,8 @@ impl<'a> Package<'a> {
 	/// For example where we use the `DepType::Depends` key:
 	///
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::package::DepType;
+	/// use oma_apt::new_cache;
+	/// use oma_apt::package::DepType;
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("apt").unwrap();
 	/// for dep in pkg.rdepends_map().get(&DepType::Depends).unwrap() {
@@ -67,7 +67,7 @@ impl<'a> Package<'a> {
 	///
 	/// # Example:
 	/// ```
-	/// use rust_apt::new_cache;
+	/// use oma_apt::new_cache;
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("apt").unwrap();
@@ -303,8 +303,8 @@ impl<'a> Version<'a> {
 	/// For example where we use the `DepType::Depends` key:
 	///
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::package::DepType;
+	/// use oma_apt::new_cache;
+	/// use oma_apt::package::DepType;
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("apt").unwrap();
 	/// let version = pkg.candidate().unwrap();
@@ -388,8 +388,8 @@ impl<'a> Version<'a> {
 	///
 	/// # Example:
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::records::RecordField;
+	/// use oma_apt::new_cache;
+	/// use oma_apt::records::RecordField;
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("apt").unwrap();

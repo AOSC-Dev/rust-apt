@@ -1,7 +1,7 @@
 mod depcache {
-	use rust_apt::cache::Upgrade;
-	use rust_apt::new_cache;
-	// use rust_apt::package::Mark;
+	use oma_apt::cache::Upgrade;
+	use oma_apt::new_cache;
+	// use oma_apt::package::Mark;
 
 	#[test]
 	fn mark_reinstall() {

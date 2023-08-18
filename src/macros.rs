@@ -4,7 +4,7 @@
 /// Here is an example of the two ways you can use this.
 ///
 /// ```
-/// use rust_apt::new_cache;
+/// use oma_apt::new_cache;
 ///
 /// let cache = new_cache!().unwrap();
 ///
@@ -19,7 +19,7 @@
 /// println!("{}", cache.get("apt").unwrap().get_version("5000:1.0.0").unwrap().version());
 /// ```
 ///
-/// Returns `Result<rust_apt::cache::Cache, cxx::Exception>`
+/// Returns `Result<oma_apt::cache::Cache, cxx::Exception>`
 macro_rules! new_cache {
 	() => {{
 		let debs: Vec<String> = Vec::new();

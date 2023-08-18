@@ -137,7 +137,7 @@ impl Config {
 	///
 	/// Example:
 	/// ```
-	/// use rust_apt::config::Config;
+	/// use oma_apt::config::Config;
 	/// let config = Config::new();
 	///
 	/// let apt_list = vec!["This", "is", "my", "apt", "list"];

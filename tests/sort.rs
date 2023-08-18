@@ -1,6 +1,6 @@
 mod sort {
-	use rust_apt::cache::*;
-	use rust_apt::new_cache;
+	use oma_apt::cache::*;
+	use oma_apt::new_cache;
 
 	#[test]
 	fn defaults() {

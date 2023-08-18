@@ -1,7 +1,7 @@
 mod root {
-	use rust_apt::new_cache;
-	use rust_apt::raw::progress::{raw, AcquireProgress, AptAcquireProgress, AptInstallProgress};
-	use rust_apt::util::*;
+	use oma_apt::new_cache;
+	use oma_apt::raw::progress::{raw, AcquireProgress, AptAcquireProgress, AptInstallProgress};
+	use oma_apt::util::*;
 
 	#[test]
 	fn lock() {

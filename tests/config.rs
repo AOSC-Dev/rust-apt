@@ -1,5 +1,5 @@
 mod config {
-	use rust_apt::config::Config;
+	use oma_apt::config::Config;
 
 	#[test]
 	fn clear() {
@@ -25,7 +25,7 @@ mod config {
 	#[test]
 	fn find_and_set() {
 		let config = Config::new_clear();
-		let key = "rust_apt::NotExist";
+		let key = "oma_apt::NotExist";
 
 		// Find our key. It should not exist.
 		assert_eq!(config.find(key, "None"), "None");
@@ -52,29 +52,29 @@ mod config {
 
 		// Check if we can set a configuration list and retrieve it.
 		// Make sure that the target vector is empty.
-		assert!(config.find_vector("rust_apt::aptlist").is_empty());
+		assert!(config.find_vector("oma_apt::aptlist").is_empty());
 
 		// Now fill our configuration vector and set it.
 		let apt_list = vec!["this", "is", "my", "apt", "list"];
-		config.set_vector("rust_apt::aptlist", &apt_list);
+		config.set_vector("oma_apt::aptlist", &apt_list);
 
 		// Retrieve a new vector from the configuration.
-		let apt_vector = config.find_vector("rust_apt::aptlist");
+		let apt_vector = config.find_vector("oma_apt::aptlist");
 
 		// If everything went smooth, our original vector should match the new one
 		assert_eq!(apt_list, apt_vector);
 
 		// Now test if we can remove a single value from the list.
-		config.clear_value("rust_apt::aptlist", "my");
+		config.clear_value("oma_apt::aptlist", "my");
 
 		// This will let us know if it worked!
 		assert_eq!(
-			config.find_vector("rust_apt::aptlist"),
+			config.find_vector("oma_apt::aptlist"),
 			vec!["this", "is", "apt", "list"]
 		);
 
 		// Finally test and see if we can clear the entire list.
-		config.clear("rust_apt::aptlist");
-		assert!(config.find_vector("rust_apt::aptlist").is_empty());
+		config.clear("oma_apt::aptlist");
+		assert!(config.find_vector("oma_apt::aptlist").is_empty());
 	}
 }

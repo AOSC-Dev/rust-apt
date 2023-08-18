@@ -1,6 +1,6 @@
 mod records {
-	use rust_apt::new_cache;
-	use rust_apt::records::RecordField;
+	use oma_apt::new_cache;
+	use oma_apt::records::RecordField;
 
 	#[test]
 	fn fields() {

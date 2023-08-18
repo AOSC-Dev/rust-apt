@@ -22,6 +22,6 @@ done
 rustup toolchain install stable
 cargo doc --no-deps
 
-# Redirect the root URL to the rust_apt docs.
-echo '<html><head><meta http-equiv="refresh" content="0; URL=/rust_apt" /></head></html>' > target/doc/index.html
+# Redirect the root URL to the oma_apt docs.
+echo '<html><head><meta http-equiv="refresh" content="0; URL=/oma_apt" /></head></html>' > target/doc/index.html
 """

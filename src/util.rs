@@ -36,7 +36,7 @@ pub fn terminal_width() -> usize {
 ///
 /// # Examples
 /// ```
-/// use rust_apt::util::cmp_versions;
+/// use oma_apt::util::cmp_versions;
 /// use std::cmp::Ordering;
 ///
 /// let ver1 = "5.0";
@@ -73,8 +73,8 @@ pub enum NumSys {
 /// Converts bytes into human readable output.
 ///
 /// ```
-/// use rust_apt::new_cache;
-/// use rust_apt::util::{unit_str, NumSys};
+/// use oma_apt::new_cache;
+/// use oma_apt::util::{unit_str, NumSys};
 /// let cache = new_cache!().unwrap();
 /// let pkg = cache.get("apt").unwrap();
 /// let version = pkg.candidate().unwrap();
@@ -135,7 +135,7 @@ pub fn time_str(seconds: u64) -> String {
 ///
 /// # Example:
 /// ```
-/// use rust_apt::util::get_apt_progress_string;
+/// use oma_apt::util::get_apt_progress_string;
 /// let progress = get_apt_progress_string(0.5, 10);
 /// assert_eq!(progress, "[####....]");
 /// ```

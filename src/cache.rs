@@ -340,8 +340,8 @@ impl Cache {
 	/// Here is an example of how you may parse the Error messages.
 	///
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::raw::progress::{AcquireProgress, AptAcquireProgress};
+	/// use oma_apt::new_cache;
+	/// use oma_apt::raw::progress::{AcquireProgress, AptAcquireProgress};
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let mut progress: Box<dyn AcquireProgress> = Box::new(AptAcquireProgress::new());
@@ -370,8 +370,8 @@ impl Cache {
 	/// # Example:
 	///
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::cache::Upgrade;
+	/// use oma_apt::new_cache;
+	/// use oma_apt::cache::Upgrade;
 	///
 	/// let cache = new_cache!().unwrap();
 	///
@@ -414,7 +414,7 @@ impl Cache {
 	/// # Example:
 	///
 	/// ```
-	/// use rust_apt::new_cache;
+	/// use oma_apt::new_cache;
 	///
 	/// let cache = new_cache!().unwrap();
 	///
@@ -434,8 +434,8 @@ impl Cache {
 	///
 	/// # Example:
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::raw::progress::{AptAcquireProgress};
+	/// use oma_apt::new_cache;
+	/// use oma_apt::raw::progress::{AptAcquireProgress};
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("neovim").unwrap();
@@ -483,8 +483,8 @@ impl Cache {
 	///
 	/// # Example:
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::raw::progress::{AptAcquireProgress, AptInstallProgress};
+	/// use oma_apt::new_cache;
+	/// use oma_apt::raw::progress::{AptAcquireProgress, AptInstallProgress};
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("neovim").unwrap();
@@ -526,8 +526,8 @@ impl Cache {
 	///   [`Err`] if there was an issue.
 	/// # Example:
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::raw::progress::{AptAcquireProgress, AptInstallProgress};
+	/// use oma_apt::new_cache;
+	/// use oma_apt::raw::progress::{AptAcquireProgress, AptInstallProgress};
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let pkg = cache.get("neovim").unwrap();

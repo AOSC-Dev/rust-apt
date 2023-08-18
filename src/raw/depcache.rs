@@ -25,8 +25,8 @@ pub mod raw {
 	/// Here is an example of creating and releasing an ActionGroup.
 	///
 	/// ```
-	/// use rust_apt::new_cache;
-	/// use rust_apt::raw::progress::{AcquireProgress, AptAcquireProgress};
+	/// use oma_apt::new_cache;
+	/// use oma_apt::raw::progress::{AcquireProgress, AptAcquireProgress};
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let action_group = cache.depcache().action_group();
