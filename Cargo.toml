@@ -7,11 +7,11 @@ categories = [
 	"api-bindings",
 	"os",
 ]
-description = "Bindings for libapt-pkg"
+description = "Bindings for libapt-pkg for help oma handle apt"
 license = "GPL-3.0-or-later"
-name = "rust-apt"
+name = "oma-apt"
 readme = "README.md"
-repository = "https://gitlab.com/volian/rust-apt"
+repository = "https://gitlab.com/AOSC-Dev/oma-apt"
 version = "0.5.1"
 
 edition = "2021"
