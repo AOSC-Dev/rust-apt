@@ -5,11 +5,11 @@
 #[cxx::bridge]
 pub mod raw {
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/progress.h");
-		include!("rust-apt/apt-pkg-c/cache.h");
-		include!("rust-apt/apt-pkg-c/records.h");
-		include!("rust-apt/apt-pkg-c/util.h");
-		include!("rust-apt/apt-pkg-c/pkgmanager.h");
+		include!("oma-apt/apt-pkg-c/progress.h");
+		include!("oma-apt/apt-pkg-c/cache.h");
+		include!("oma-apt/apt-pkg-c/records.h");
+		include!("oma-apt/apt-pkg-c/util.h");
+		include!("oma-apt/apt-pkg-c/pkgmanager.h");
 
 		type PackageManager;
 		type ProblemResolver;

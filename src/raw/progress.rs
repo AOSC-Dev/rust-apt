@@ -573,7 +573,7 @@ pub mod raw {
 		type DynOperationProgress = Box<dyn crate::raw::progress::OperationProgress>;
 		type DynInstallProgress = Box<dyn crate::raw::progress::InstallProgress>;
 
-		include!("rust-apt/apt-pkg-c/progress.h");
+		include!("oma-apt/apt-pkg-c/progress.h");
 	}
 }
 

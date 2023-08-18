@@ -59,7 +59,7 @@ mod cache {
 
 	#[test]
 	fn empty_deps() {
-		// This would fail before https://gitlab.com/volian/rust-apt/-/merge_requests/29
+		// This would fail before https://gitlab.com/volian/oma-apt/-/merge_requests/29
 		let cache = new_cache!().unwrap();
 		let sort = PackageSort::default();
 
@@ -294,7 +294,7 @@ mod cache {
 		for pkg in cache.packages(&sort).unwrap() {
 			// Iterate over the reverse depends
 			// Iterating rdepends could segfault.
-			// See: https://gitlab.com/volian/rust-apt/-/merge_requests/36
+			// See: https://gitlab.com/volian/oma-apt/-/merge_requests/36
 			for deps in pkg.rdepends_map().values() {
 				for dep in deps {
 					let base_dep = dep.first();
@@ -331,7 +331,7 @@ mod cache {
 		assert!(provide.version_str().unwrap() == cand.version());
 	}
 
-	// This Test is for https://gitlab.com/volian/rust-apt/-/issues/24
+	// This Test is for https://gitlab.com/volian/oma-apt/-/issues/24
 	// TODO: refactor and enable this test so it can run in the CI to make sure we
 	// don't regress. We need to get the lists dir from the apt config, and then
 	// maybe pick a random InRelease file Back that up, do the editing and then

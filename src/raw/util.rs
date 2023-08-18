@@ -3,7 +3,7 @@
 pub mod raw {
 
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/util.h");
+		include!("oma-apt/apt-pkg-c/util.h");
 
 		/// Compares two package versions, `ver1` and `ver2`. The returned
 		/// integer's value is mapped to one of the following integers:

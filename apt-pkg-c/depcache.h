@@ -4,7 +4,7 @@
 #include <apt-pkg/upgrade.h>
 #include <memory>
 
-#include "rust-apt/src/raw/depcache.rs"
+#include "oma-apt/src/raw/depcache.rs"
 
 /// Clear any marked changes in the DepCache.
 inline void DepCache::init(DynOperationProgress& callback) const {

@@ -10,8 +10,8 @@
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/update.h>
 
-#include "rust-apt/src/raw/cache.rs"
-#include "rust-apt/src/raw/progress.rs"
+#include "oma-apt/src/raw/cache.rs"
+#include "oma-apt/src/raw/progress.rs"
 
 /// Update the package lists, handle errors and return a Result.
 inline void Cache::update(DynAcquireProgress& callback) const {

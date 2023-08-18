@@ -40,11 +40,11 @@ pub mod raw {
 	}
 
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/types.h");
-		include!("rust-apt/apt-pkg-c/package.h");
-		include!("rust-apt/apt-pkg-c/util.h");
-		include!("rust-apt/apt-pkg-c/progress.h");
-		include!("rust-apt/apt-pkg-c/depcache.h");
+		include!("oma-apt/apt-pkg-c/types.h");
+		include!("oma-apt/apt-pkg-c/package.h");
+		include!("oma-apt/apt-pkg-c/util.h");
+		include!("oma-apt/apt-pkg-c/progress.h");
+		include!("oma-apt/apt-pkg-c/depcache.h");
 
 		type PkgDepCache;
 		type PkgActionGroup;

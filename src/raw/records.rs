@@ -2,8 +2,8 @@
 #[cxx::bridge]
 pub mod raw {
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/package.h");
-		include!("rust-apt/apt-pkg-c/records.h");
+		include!("oma-apt/apt-pkg-c/package.h");
+		include!("oma-apt/apt-pkg-c/records.h");
 		type Records;
 		type VersionFile = crate::raw::package::raw::VersionFile;
 		type DescriptionFile = crate::raw::package::raw::DescriptionFile;

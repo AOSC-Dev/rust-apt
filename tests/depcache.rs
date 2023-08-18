@@ -25,7 +25,7 @@ mod depcache {
 	// Make a test for getting the candidate after you set a candidate.
 	// Make sure it's the expected version.
 	// We had to change to getting the candidate from the depcache.
-	// https://gitlab.com/volian/rust-apt/-/issues/14
+	// https://gitlab.com/volian/oma-apt/-/issues/14
 
 	// #[test]
 	// fn changes_test() {

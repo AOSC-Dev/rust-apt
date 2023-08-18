@@ -4,7 +4,7 @@
 #include <apt-pkg/policy.h>
 #include <memory>
 
-#include "rust-apt/src/raw/package.rs"
+#include "oma-apt/src/raw/package.rs"
 #include "util.h"
 
 inline rust::Str Provider::name() const noexcept { return ptr->Name(); }

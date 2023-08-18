@@ -18,10 +18,10 @@ test:
       - target/
 
   script:
-    # Debian/Ubuntu docker images contain some docker-specific configs that mess with rust-apt tests, so remove them here first.
+    # Debian/Ubuntu docker images contain some docker-specific configs that mess with oma-apt tests, so remove them here first.
     # https://github.com/GoogleContainerTools/base-images-docker/blob/master/debian/reproducible/overlay/etc/apt/apt.conf.d/docker-gzip-indexes
     - rm -f /etc/apt/apt.conf.d/docker*
-  
+
     # Install needed packages
     - apt-get update
     - apt-get install eatmydata -y
@@ -38,7 +38,7 @@ test:
 
     - rustup toolchain install nightly
     - rustup toolchain install stable
-    
+
     # Run tests
     - cargo install just
     - eatmydata just check
@@ -71,12 +71,12 @@ publish:
       libapt-pkg-dev
     - curl https://sh.rustup.rs -sSf | sh -- /dev/stdin -y
     - rustup default stable
-    
+
     # Create the Git tag and publish.
     - |
       git fetch --tags
       current_version="$(cargo metadata --no-deps --format-version=1 | jq -r '.packages[0].version')"
-      
+
       if ! git tag | grep "^v${current_version}$"; then
         project_url="$(echo "${CI_PROJECT_URL}" | sed "s|https://|https://oauth2:${WRITE_REPOSITORY}@|")"
         git tag "v${current_version}"

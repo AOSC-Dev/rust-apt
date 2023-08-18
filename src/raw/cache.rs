@@ -13,13 +13,13 @@ pub mod raw {
 	impl UniquePtr<Records> {}
 
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/types.h");
-		include!("rust-apt/apt-pkg-c/package.h");
-		include!("rust-apt/apt-pkg-c/util.h");
-		include!("rust-apt/apt-pkg-c/depcache.h");
-		include!("rust-apt/apt-pkg-c/records.h");
-		include!("rust-apt/apt-pkg-c/progress.h");
-		include!("rust-apt/apt-pkg-c/cache.h");
+		include!("oma-apt/apt-pkg-c/types.h");
+		include!("oma-apt/apt-pkg-c/package.h");
+		include!("oma-apt/apt-pkg-c/util.h");
+		include!("oma-apt/apt-pkg-c/depcache.h");
+		include!("oma-apt/apt-pkg-c/records.h");
+		include!("oma-apt/apt-pkg-c/progress.h");
+		include!("oma-apt/apt-pkg-c/cache.h");
 		type PkgCacheFile;
 
 		type Package = crate::raw::package::raw::Package;

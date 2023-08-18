@@ -7,7 +7,7 @@
 #include <apt-pkg/version.h>
 #include <cstdint>
 
-//#include "rust-apt/src/package.rs"
+//#include "oma-apt/src/package.rs"
 
 /// Internal Helper Functions.
 /// Do not expose these on the Rust side - only for use on the C++ side.
@@ -42,7 +42,7 @@ inline const char* handle_str(const char* str) {
 /// Getting the PkgCache can segfault if apt errors are not handled
 /// This function makes it safer as it will return a result in the event
 /// A package list or something is corrupt.
-/// See https://gitlab.com/volian/rust-apt/-/issues/24
+/// See https://gitlab.com/volian/oma-apt/-/issues/24
 inline pkgCache* safe_get_pkg_cache(pkgCacheFile* cache) {
 	pkgCache* pkg_cache = cache->GetPkgCache();
 	handle_errors();

@@ -34,7 +34,7 @@ pub mod RecordField {
 	pub const InstalledSize: &str = "Installed-Size";
 
 	/// The homepage of the software
-	/// `https://gitlab.com/volian/rust-apt`
+	/// `https://gitlab.com/volian/oma-apt`
 	pub const Homepage: &str = "Homepage";
 
 	/// If the package is essential `yes`

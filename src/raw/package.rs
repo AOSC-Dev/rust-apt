@@ -51,8 +51,8 @@ pub mod raw {
 	}
 
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/types.h");
-		include!("rust-apt/apt-pkg-c/package.h");
+		include!("oma-apt/apt-pkg-c/types.h");
+		include!("oma-apt/apt-pkg-c/package.h");
 
 		type PkgIterator;
 		type VerIterator;

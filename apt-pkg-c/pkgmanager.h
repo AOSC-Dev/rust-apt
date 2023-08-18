@@ -23,7 +23,7 @@ struct PackageManager {
 			&acquire, cache.ptr->GetSourceList(), &records.records)) {
 			handle_errors();
 			throw std::runtime_error(
-			"Internal Issue with rust-apt in pkgmanager_get_archives."
+			"Internal Issue with oma-apt in pkgmanager_get_archives."
 			" Please report this as an issue.");
 		}
 
@@ -47,7 +47,7 @@ struct PackageManager {
 		} else if (res == pkgPackageManager::OrderResult::Failed) {
 			handle_errors();
 			throw std::runtime_error(
-			"Internal Issue with rust-apt in pkgmanager_do_install."
+			"Internal Issue with oma-apt in pkgmanager_do_install."
 			" DoInstall has failed but there was no error from apt."
 			" Please report this as an issue.");
 		} else if (res == pkgPackageManager::OrderResult::Incomplete) {
@@ -55,7 +55,7 @@ struct PackageManager {
 			// But we'll try anyway. This is believed to be only for media swapping
 			handle_errors();
 			throw std::runtime_error(
-			"Internal Issue with rust-apt in pkgmanager_do_install."
+			"Internal Issue with oma-apt in pkgmanager_do_install."
 			" DoInstall returned Incomplete, media swaps are unsupported."
 			" Please request media swapping as a feature.");
 		} else {
@@ -64,7 +64,7 @@ struct PackageManager {
 			// And then fallback with a message to report with the result code.
 			handle_errors();
 			throw std::runtime_error(
-			"Internal Issue with rust-apt in pkgmanager_do_install."
+			"Internal Issue with oma-apt in pkgmanager_do_install."
 			" Please report this as an issue. OrderResult: " +
 			res);
 		}

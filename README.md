@@ -1,8 +1,8 @@
-# RUST-APT
+# oma-apt
 
-`rust-apt` provides bindings to `libapt-pkg`.
+`oma-apt` provides bindings to `libapt-pkg`.
 
-Currently `rust-apt` has most functionality available such as basic querying of package information,
+Currently `oma-apt` has most functionality available such as basic querying of package information,
 Installing and removing packages, updating the package lists and upgrading the system.
 
 If you find something missing, please make an Issue to request the feature.
@@ -10,7 +10,7 @@ If you find something missing, please make an Issue to request the feature.
 ### *This Crate is Under Active Development*
 
 This API is not considered stable. Breaking changes will happen as the API comes together.
-As `rust-apt` doesn't have a Major, breaking change will be on the Minor. Never on the Patch.
+As `oma-apt` doesn't have a Major, breaking change will be on the Minor. Never on the Patch.
 
 `src/raw` contains the direct C++ bindings to `libapt-pkg` that are defined in `apt-pkg-c`
 
@@ -21,7 +21,7 @@ If you find a way to segfault without using the `raw` bindings directly, please 
 
 # Documentation and Examples
 
-For more instructions on how to use `rust-apt` see our [crates.io](https://crates.io/crates/rust-apt) page.
+For more instructions on how to use `oma-apt` see our [crates.io](https://crates.io/crates/oma-apt) page.
 
 # License Note
 

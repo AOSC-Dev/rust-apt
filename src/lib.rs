@@ -1,7 +1,7 @@
-//! rust-apt provides bindings to `libapt-pkg`.
+//! oma-apt provides bindings to `libapt-pkg`.
 //! The goal is to eventually have all of the functionality of `python-apt`
 //!
-//! The source repository is <https://gitlab.com/volian/rust-apt>
+//! The source repository is <https://gitlab.com/volian/oma-apt>
 //! For more information please see the readme in the source code.
 //!
 //! Each module has a `raw` submodule containing c++ bindings to `libapt-pkg`

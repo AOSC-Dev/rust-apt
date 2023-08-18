@@ -2,7 +2,7 @@
 #[cxx::bridge]
 pub mod raw {
 	unsafe extern "C++" {
-		include!("rust-apt/apt-pkg-c/configuration.h");
+		include!("oma-apt/apt-pkg-c/configuration.h");
 
 		/// init the system. This must occur before creating the cache.
 		pub fn init_system();

@@ -13,7 +13,7 @@ fn main() {
 	cxx_build::bridges(source_files)
 		.file("apt-pkg-c/progress.cc")
 		.flag_if_supported("-std=c++14")
-		.compile("rust-apt");
+		.compile("oma-apt");
 
 	println!("cargo:rustc-link-lib=apt-pkg");
 	println!("cargo:rerun-if-changed=src/raw/cache.rs");
