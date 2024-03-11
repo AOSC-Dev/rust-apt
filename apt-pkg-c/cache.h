@@ -55,6 +55,113 @@ inline void Cache::find_index(PackageFile& pkg_file) const noexcept {
 	}
 }
 
+inline void Cache::show_broken_package(const Package& pkg, bool now) const noexcept {
+	PkgIterator const& Pkg = *pkg.ptr;
+	ptr->GetDepCache();
+	PkgCacheFile* const Cache = &*ptr;
+	bool Now = now;
+
+	if (Now == true) {
+		if ((*Cache)[Pkg].NowBroken() == false) return;
+	} else {
+		if ((*Cache)[Pkg].InstBroken() == false) return;
+	}
+
+	// Print out each package and the failed dependencies
+	std::cout << " " << Pkg.FullName(true) << " :";
+	unsigned const Indent = Pkg.FullName(true).size() + 3;
+	bool First = true;
+	pkgCache::VerIterator Ver;
+
+	if (now == true)
+		Ver = Pkg.CurrentVer();
+	else
+		Ver = (*Cache)[Pkg].InstVerIter(*Cache);
+
+	if (Ver.end() == true) {
+		std::cout << std::endl;
+		return;
+	}
+
+	for (pkgCache::DepIterator D = Ver.DependsList(); D.end() == false;) {
+		// Compute a single dependency element (glob or)
+		pkgCache::DepIterator Start;
+		pkgCache::DepIterator End;
+		D.GlobOr(Start, End); // advances D
+
+		if ((*Cache)->IsImportantDep(End) == false) continue;
+
+		if (Now == true) {
+			if (((*Cache)[End] & pkgDepCache::DepGNow) == pkgDepCache::DepGNow)
+				continue;
+		} else {
+			if (((*Cache)[End] & pkgDepCache::DepGInstall) == pkgDepCache::DepGInstall)
+				continue;
+		}
+
+		bool FirstOr = true;
+		while (1) {
+			if (First == false)
+				for (unsigned J = 0; J != Indent; J++)
+					std::cout << ' ';
+			First = false;
+
+			if (FirstOr == false) {
+				for (unsigned J = 0; J != strlen(End.DepType()) + 3; J++)
+					std::cout << ' ';
+			} else
+				std::cout << ' ' << End.DepType() << ": ";
+			FirstOr = false;
+
+			std::cout << Start.TargetPkg().FullName(true);
+
+			// Show a quick summary of the version requirements
+			if (Start.TargetVer() != 0)
+				std::cout << " (" << Start.CompType() << " " << Start.TargetVer() << ")";
+
+			/* Show a summary of the target package if possible. In the case
+			   of virtual packages we show nothing */
+			pkgCache::PkgIterator Targ = Start.TargetPkg();
+			if (Targ->ProvidesList == 0) {
+				std::cout << ' ';
+				pkgCache::VerIterator Ver = (*Cache)[Targ].InstVerIter(*Cache);
+				if (now == true) Ver = Targ.CurrentVer();
+
+				if (Ver.end() == false) {
+					if (Now == true)
+						ioprintf(std::cout, "but %s is installed", Ver.VerStr());
+					else
+						ioprintf(std::cout, "but %s is to be installed", Ver.VerStr());
+				} else {
+					if ((*Cache)[Targ].CandidateVerIter(*Cache).end() == true) {
+						if (Targ->ProvidesList == 0)
+							std::cout << "but it is to be installed";
+						else
+							std::cout << "but it is a virtual package";
+					} else
+						std::cout << (Now ? "but it is not installed" : "but it is not going to be installed");
+				}
+			}
+
+			if (Start != End) std::cout << " or";
+			std::cout << std::endl;
+
+			if (Start == End) break;
+			++Start;
+		}
+	}
+}
+
+inline void Cache::show_broken(bool const Now) const noexcept {
+	PkgCacheFile Cache = *ptr;
+	if (Cache->BrokenCount() == 0) return;
+
+	//    out << "The following packages have unmet dependencies:" << std::endl;
+	APT::PackageUniverse Universe(Cache);
+	for (auto const& Pkg : Universe)
+		show_broken_package(Package{ std::make_unique<PkgIterator>(Pkg) }, Now);
+}
+
 /// These should probably go under a index file binding;
 /// Return true if the PackageFile is trusted.
 inline bool Cache::is_trusted(PackageFile& pkg_file) const noexcept {

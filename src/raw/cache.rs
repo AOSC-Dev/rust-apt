@@ -67,6 +67,9 @@ pub mod raw {
 		/// Return the pointer to the start of the PkgIterator.
 		pub fn begin(self: &Cache) -> Result<Package>;
 
+		pub fn show_broken_package(self: &Cache, pkg: &Package, now: bool);
+
+		pub fn show_broken(self: &Cache, now: bool);
 	}
 }
 

@@ -58,6 +58,14 @@ mod cache {
 	}
 
 	#[test]
+	fn test_show_broken() {
+		let cache = new_cache!().unwrap();
+		let pkg = cache.get("apt").unwrap().unique();
+
+		cache.show_broken_package(&pkg, false);
+	}
+
+	#[test]
 	fn empty_deps() {
 		// This would fail before https://gitlab.com/volian/oma-apt/-/merge_requests/29
 		let cache = new_cache!().unwrap();
