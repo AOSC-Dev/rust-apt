@@ -153,11 +153,12 @@ inline void Cache::show_broken_package(const Package& pkg, bool now) const noexc
 }
 
 inline void Cache::show_broken(bool const Now) const noexcept {
-	PkgCacheFile Cache = *ptr;
-	if (Cache->BrokenCount() == 0) return;
-
+	// convert PkgCacheFile to pkgDepCache
+	// apt-pkg/cachefile.h: operator pkgDepCache &() const {return *DCache;};
+	if (((pkgDepCache&) ptr).BrokenCount() == 0) return;
+	
 	//    out << "The following packages have unmet dependencies:" << std::endl;
-	APT::PackageUniverse Universe(Cache);
+	APT::PackageUniverse Universe(&*ptr);
 	for (auto const& Pkg : Universe)
 		show_broken_package(Package{ std::make_unique<PkgIterator>(Pkg) }, Now);
 }
