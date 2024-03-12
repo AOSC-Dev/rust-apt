@@ -62,7 +62,7 @@ mod cache {
 		let cache = new_cache!().unwrap();
 		let pkg = cache.get("apt").unwrap().unique();
 
-		cache.show_broken_package(&pkg, false);
+		cache.show_broken_package(&mut vec![], &pkg, false);
 	}
 
 	#[test]

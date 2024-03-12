@@ -1,5 +1,6 @@
 mod config {
 	use oma_apt::config::Config;
+	use std::process::Command;
 
 	#[test]
 	fn clear() {
@@ -76,5 +77,23 @@ mod config {
 		// Finally test and see if we can clear the entire list.
 		config.clear("oma_apt::aptlist");
 		assert!(config.find_vector("oma_apt::aptlist").is_empty());
+	}
+
+	#[test]
+	fn get_architectures() {
+		let config = Config::new();
+
+		let output = dbg!(String::from_utf8(
+			Command::new("dpkg")
+				.arg("--print-architecture")
+				.output()
+				.unwrap()
+				.stdout,
+		)
+		.unwrap());
+
+		let arches = dbg!(config.get_architectures());
+
+		assert!(arches.contains(&output.strip_suffix('\n').unwrap().to_string()));
 	}
 }
