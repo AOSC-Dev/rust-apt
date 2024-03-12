@@ -11,8 +11,8 @@ description = "Bindings for libapt-pkg for help oma handle apt"
 license = "GPL-3.0-or-later"
 name = "oma-apt"
 readme = "README.md"
-repository = "https://gitlab.com/AOSC-/oma-apt"
-version = "0.2.0"
+repository = "https://github.com.com/AOSC-Tracking/oma-apt"
+version = "0.2.1"
 
 edition = "2021"
 
