@@ -3,7 +3,6 @@
 use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::fmt;
-use std::fmt::Debug;
 use std::hash::{Hash, Hasher};
 use std::ops::Deref;
 
@@ -259,6 +258,25 @@ impl<'a> PartialEq for Package<'a> {
 	fn eq(&self, other: &Self) -> bool { self.id() == other.id() }
 }
 
+impl<'a> fmt::Display for Package<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		write!(f, "{}", self.name())?;
+		Ok(())
+	}
+}
+
+impl<'a> fmt::Debug for Package<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		let versions: Vec<Version> = self.versions().collect();
+		f.debug_struct("Package")
+			.field("name", &self.name())
+			.field("arch", &self.arch())
+			.field("virtual", &versions.is_empty())
+			.field("versions", &versions)
+			.finish_non_exhaustive()
+	}
+}
+
 pub struct Version<'a> {
 	ptr: RawVersion,
 	cache: &'a Cache,
@@ -474,6 +492,35 @@ impl<'a> Deref for Version<'a> {
 	fn deref(&self) -> &RawVersion { &self.ptr }
 }
 
+impl<'a> fmt::Display for Version<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		write!(f, "{}", self.version())?;
+		Ok(())
+	}
+}
+
+impl<'a> fmt::Debug for Version<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		let parent = self.parent();
+		// Lifetimes make us have to do some weird things.
+		let is_candidate = match self.cache.depcache().candidate_version(&parent) {
+			Some(cand) => {
+				let temp_ver = Version::new(cand, self.cache);
+				self == &temp_ver
+			},
+			None => false,
+		};
+
+		f.debug_struct("Version")
+			.field("pkg", &parent.name())
+			.field("arch", &self.arch())
+			.field("version", &self.version())
+			.field("is_candidate", &is_candidate)
+			.field("is_installed", &self.is_installed())
+			.finish_non_exhaustive()
+	}
+}
+
 pub fn create_depends_map(
 	cache: &Cache,
 	dep: Option<RawDependency>,
@@ -515,7 +562,7 @@ pub fn create_depends_map(
 	dependencies
 }
 
-#[derive(Debug, Eq, PartialEq, Hash)]
+#[derive(fmt::Debug, Eq, PartialEq, Hash)]
 pub enum DepType {
 	Depends,
 	PreDepends,
@@ -541,6 +588,22 @@ impl From<u8> for DepType {
 			8 => DepType::Breaks,
 			9 => DepType::Enhances,
 			_ => panic!("Dependency is malformed?"),
+		}
+	}
+}
+
+impl AsRef<str> for DepType {
+	fn as_ref(&self) -> &str {
+		match self {
+			DepType::Depends => "Depends",
+			DepType::PreDepends => "PreDepends",
+			DepType::Suggests => "Suggests",
+			DepType::Recommends => "Recommends",
+			DepType::Conflicts => "Conflicts",
+			DepType::Replaces => "Replaces",
+			DepType::Obsoletes => "Obsoletes",
+			DepType::Breaks => "Breaks",
+			DepType::Enhances => "Enhances",
 		}
 	}
 }
@@ -602,23 +665,31 @@ impl<'a> Deref for BaseDep<'a> {
 	fn deref(&self) -> &RawDependency { &self.ptr }
 }
 
-impl<'a> Debug for BaseDep<'a> {
+impl<'a> fmt::Display for BaseDep<'a> {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(
-			f,
-			"BaseDep <Name: '{}', Version: '{}', Comp: '{}', Type: '{}', IsReverse: '{}'>",
-			self.name(),
-			self.version().unwrap_or("None"),
-			self.comp().unwrap_or("None"),
-			self.dep_type(),
-			self.is_reverse(),
-		)?;
-		Ok(())
+		if let (Some(comp), Some(version)) = (self.comp(), self.version()) {
+			write!(f, "({} {comp} {version})", self.name(),)
+		} else {
+			write!(f, "({})", self.name(),)
+		}
+	}
+}
+
+impl<'a> fmt::Debug for BaseDep<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		f.debug_struct("BaseDep")
+			.field("parent", &self.parent_pkg().name())
+			.field("name", &self.name())
+			.field("comp", &self.comp())
+			.field("version", &self.version())
+			.field("dep_type", &DepType::from(self.dep_type()))
+			.field("is_reverse", &self.is_reverse())
+			.finish()
 	}
 }
 
 /// A struct representing an Or_Group of Dependencies.
-#[derive(Debug)]
+#[derive(fmt::Debug)]
 pub struct Dependency<'a> {
 	/// Vector of BaseDeps that can satisfy this dependency.
 	pub base_deps: Vec<BaseDep<'a>>,
@@ -633,6 +704,27 @@ impl<'a> Dependency<'a> {
 
 	/// Returns a reference to the first BaseDep
 	pub fn first(&self) -> &BaseDep<'a> { &self.base_deps[0] }
+}
+
+impl<'a> fmt::Display for Dependency<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		let mut dep_str = String::new();
+
+		for (i, base_dep) in self.base_deps.iter().enumerate() {
+			dep_str += &base_dep.to_string();
+			if i + 1 != self.base_deps.len() {
+				dep_str += " | "
+			}
+		}
+
+		write!(
+			f,
+			"{} {:?} {dep_str}",
+			self.first().parent_pkg().fullname(false),
+			self.dep_type(),
+		)?;
+		Ok(())
+	}
 }
 
 pub struct Provider<'a> {
@@ -655,6 +747,29 @@ impl<'a> Deref for Provider<'a> {
 
 	#[inline]
 	fn deref(&self) -> &RawProvider { &self.ptr }
+}
+
+impl<'a> fmt::Display for Provider<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		let version = self.version();
+		write!(
+			f,
+			"{} provides {} {}",
+			self.name(),
+			version.parent().fullname(false),
+			version.version(),
+		)?;
+		Ok(())
+	}
+}
+
+impl<'a> fmt::Debug for Provider<'a> {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		f.debug_struct("Provider")
+			.field("name", &self.name())
+			.field("version", &self.version())
+			.finish()
+	}
 }
 
 // Implementation allowing structs to be put into a hashmap
