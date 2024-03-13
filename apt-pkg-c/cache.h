@@ -133,9 +133,9 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 
 				if (Ver.end() == false) {
 					if (Now == true)
-						s << "but %s is installed", Ver.VerStr();
+						s << "but " << Ver.VerStr() << " is installed";
 					else
-						s << "but %s is to be installed", Ver.VerStr();
+						s << "but " << Ver.VerStr() << " is to be installed";
 				} else {
 					if ((*Cache)[Targ].CandidateVerIter(*Cache).end() == true) {
 						if (Targ->ProvidesList == 0)
