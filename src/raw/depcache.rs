@@ -222,6 +222,10 @@ pub mod raw {
 		/// i.e. the Installed-Size of all packages marked for installation"
 		/// minus the Installed-Size of all packages for removal."
 		pub fn disk_size(self: &DepCache) -> i64;
+
+		pub fn status(self: &DepCache, pkg: &Package) -> u8;
+
+		pub fn mode(self: &DepCache, pkg: &Package) -> String;
 	}
 }
 

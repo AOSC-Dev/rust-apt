@@ -3,6 +3,7 @@
 #include <apt-pkg/cachefile.h>
 #include <apt-pkg/upgrade.h>
 #include <memory>
+#include <string>
 
 #include "oma-apt/src/raw/depcache.rs"
 

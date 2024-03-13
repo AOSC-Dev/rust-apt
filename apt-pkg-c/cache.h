@@ -9,6 +9,8 @@
 #include <apt-pkg/policy.h>
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/update.h>
+#include <sstream>
+#include <string>
 
 #include "oma-apt/src/raw/cache.rs"
 #include "oma-apt/src/raw/progress.rs"
@@ -55,20 +57,22 @@ inline void Cache::find_index(PackageFile& pkg_file) const noexcept {
 	}
 }
 
-inline void Cache::show_broken_package(const Package& pkg, bool now) const noexcept {
+inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string> &result, const Package& pkg, bool now) const noexcept {
 	PkgIterator const& Pkg = *pkg.ptr;
 	ptr->GetDepCache();
 	PkgCacheFile* const Cache = &*ptr;
 	bool Now = now;
 
 	if (Now == true) {
-		if ((*Cache)[Pkg].NowBroken() == false) return;
+		if ((*Cache)[Pkg].NowBroken() == false) return result;
 	} else {
-		if ((*Cache)[Pkg].InstBroken() == false) return;
+		if ((*Cache)[Pkg].InstBroken() == false) return result;
 	}
 
+    std::stringstream s;
+
 	// Print out each package and the failed dependencies
-	std::cout << " " << Pkg.FullName(true) << " :";
+	s << Pkg.FullName(true) << " :";
 	unsigned const Indent = Pkg.FullName(true).size() + 3;
 	bool First = true;
 	pkgCache::VerIterator Ver;
@@ -79,8 +83,9 @@ inline void Cache::show_broken_package(const Package& pkg, bool now) const noexc
 		Ver = (*Cache)[Pkg].InstVerIter(*Cache);
 
 	if (Ver.end() == true) {
-		std::cout << std::endl;
-		return;
+		s << std::endl;
+		result.push_back(s.str());
+		return result;
 	}
 
 	for (pkgCache::DepIterator D = Ver.DependsList(); D.end() == false;) {
@@ -103,27 +108,27 @@ inline void Cache::show_broken_package(const Package& pkg, bool now) const noexc
 		while (1) {
 			if (First == false)
 				for (unsigned J = 0; J != Indent; J++)
-					std::cout << ' ';
+					s << ' ';
 			First = false;
 
 			if (FirstOr == false) {
 				for (unsigned J = 0; J != strlen(End.DepType()) + 3; J++)
-					std::cout << ' ';
+					s << ' ';
 			} else
-				std::cout << ' ' << End.DepType() << ": ";
+				s << ' ' << End.DepType() << ": ";
 			FirstOr = false;
 
-			std::cout << Start.TargetPkg().FullName(true);
+			s << Start.TargetPkg().FullName(true);
 
 			// Show a quick summary of the version requirements
 			if (Start.TargetVer() != 0)
-				std::cout << " (" << Start.CompType() << " " << Start.TargetVer() << ")";
+				s << " (" << Start.CompType() << " " << Start.TargetVer() << ")";
 
 			/* Show a summary of the target package if possible. In the case
 			   of virtual packages we show nothing */
 			pkgCache::PkgIterator Targ = Start.TargetPkg();
 			if (Targ->ProvidesList == 0) {
-				std::cout << ' ';
+				s << ' ';
 				pkgCache::VerIterator Ver = (*Cache)[Targ].InstVerIter(*Cache);
 				if (now == true) Ver = Targ.CurrentVer();
 
@@ -135,32 +140,38 @@ inline void Cache::show_broken_package(const Package& pkg, bool now) const noexc
 				} else {
 					if ((*Cache)[Targ].CandidateVerIter(*Cache).end() == true) {
 						if (Targ->ProvidesList == 0)
-							std::cout << "but it is to be installed";
+							s << "but it is to be installed";
 						else
-							std::cout << "but it is a virtual package";
+							s << "but it is a virtual package";
 					} else
-						std::cout << (Now ? "but it is not installed" : "but it is not going to be installed");
+						s << (Now ? "but it is not installed" : "but it is not going to be installed");
 				}
 			}
 
 			if (Start != End) std::cout << " or";
-			std::cout << std::endl;
+			s << std::endl;
+			result.push_back(s.str());
 
 			if (Start == End) break;
 			++Start;
 		}
 	}
+
+	return result;
 }
 
-inline void Cache::show_broken(bool const Now) const noexcept {
+inline rust::Vec<rust::string> Cache::show_broken(bool const Now) const noexcept {
 	// convert PkgCacheFile to pkgDepCache
 	// apt-pkg/cachefile.h: operator pkgDepCache &() const {return *DCache;};
-	if (((pkgDepCache&) ptr).BrokenCount() == 0) return;
+	rust::vec<rust::string> result;
+	if (((pkgDepCache&) ptr).BrokenCount() == 0) return result;
 	
 	//    out << "The following packages have unmet dependencies:" << std::endl;
 	APT::PackageUniverse Universe(&*ptr);
 	for (auto const& Pkg : Universe)
-		show_broken_package(Package{ std::make_unique<PkgIterator>(Pkg) }, Now);
+		show_broken_package(result, Package{ std::make_unique<PkgIterator>(Pkg) }, Now);
+
+	return result;
 }
 
 /// These should probably go under a index file binding;
