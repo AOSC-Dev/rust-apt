@@ -83,7 +83,6 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 		Ver = (*Cache)[Pkg].InstVerIter(*Cache);
 
 	if (Ver.end() == true) {
-		s << std::endl;
 		result.push_back(s.str());
 		return result;
 	}
@@ -134,9 +133,9 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 
 				if (Ver.end() == false) {
 					if (Now == true)
-						ioprintf(std::cout, "but %s is installed", Ver.VerStr());
+						s << "but %s is installed", Ver.VerStr();
 					else
-						ioprintf(std::cout, "but %s is to be installed", Ver.VerStr());
+						s << "but %s is to be installed", Ver.VerStr();
 				} else {
 					if ((*Cache)[Targ].CandidateVerIter(*Cache).end() == true) {
 						if (Targ->ProvidesList == 0)
@@ -148,8 +147,7 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 				}
 			}
 
-			if (Start != End) std::cout << " or";
-			s << std::endl;
+			if (Start != End) s << " or";
 			result.push_back(s.str());
 
 			if (Start == End) break;
