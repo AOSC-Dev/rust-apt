@@ -57,7 +57,8 @@ inline void Cache::find_index(PackageFile& pkg_file) const noexcept {
 	}
 }
 
-inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string> &result, const Package& pkg, bool now) const noexcept {
+inline rust::Vec<rust::string> Cache::show_broken_package(
+rust::Vec<rust::string>& result, const Package& pkg, bool now) const noexcept {
 	PkgIterator const& Pkg = *pkg.ptr;
 	ptr->GetDepCache();
 	PkgCacheFile* const Cache = &*ptr;
@@ -69,7 +70,7 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 		if ((*Cache)[Pkg].InstBroken() == false) return result;
 	}
 
-    std::stringstream s;
+	std::stringstream s;
 
 	// Print out each package and the failed dependencies
 	s << Pkg.FullName(true) << " :";
@@ -143,12 +144,14 @@ inline rust::Vec<rust::string> Cache::show_broken_package(rust::Vec<rust::string
 						else
 							s << "but it is a virtual package";
 					} else
-						s << (Now ? "but it is not installed" : "but it is not going to be installed");
+						s << (Now ? "but it is not installed" :
+									"but it is not going to be installed");
 				}
 			}
 
 			if (Start != End) s << " or";
 			result.push_back(s.str());
+			s.str("");
 
 			if (Start == End) break;
 			++Start;
@@ -162,8 +165,8 @@ inline rust::Vec<rust::string> Cache::show_broken(bool const Now) const noexcept
 	// convert PkgCacheFile to pkgDepCache
 	// apt-pkg/cachefile.h: operator pkgDepCache &() const {return *DCache;};
 	rust::vec<rust::string> result;
-	if (((pkgDepCache&) ptr).BrokenCount() == 0) return result;
-	
+	if (((pkgDepCache&)ptr).BrokenCount() == 0) return result;
+
 	//    out << "The following packages have unmet dependencies:" << std::endl;
 	APT::PackageUniverse Universe(&*ptr);
 	for (auto const& Pkg : Universe)
