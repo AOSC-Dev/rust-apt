@@ -5,6 +5,7 @@
 #include <apt-pkg/pkgsystem.h>
 #include <apt-pkg/version.h>
 #include <cstdint>
+#include <sstream>
 #include "rust/cxx.h"
 
 //#include "oma-apt/src/package.rs"
@@ -14,21 +15,10 @@
 ///
 /// Handle any apt errors and return result to rust.
 inline void handle_errors() {
-	std::string err_str;
-	while (!_error->empty()) {
-		std::string msg;
-		bool Type = _error->PopMessage(msg);
-		err_str.append(Type == true ? "E:" : "W:");
-		err_str.append(msg);
-		err_str.append(";");
-	}
-
-	// Throwing runtime_error returns result to rust.
-	// Remove the last ";" in the string before sending it.
-	if (err_str.length()) {
-		err_str.pop_back();
-		throw std::runtime_error(err_str);
-	}
+	// !_error->empty() will cause a Result when there are only warnings
+	// Instead use PendingErr()
+	// Actual handling of the errors is done in rust
+	if (_error->PendingError()) { throw std::runtime_error("convert to AptErrors"); }
 }
 
 /// Handle the situation where a string is null and return a result to rust
@@ -46,6 +36,7 @@ inline pkgCache* safe_get_pkg_cache(pkgCacheFile* cache) {
 	handle_errors();
 	return pkg_cache;
 }
+
 
 /// Check if a string exists and return a Result to rust
 inline rust::string handle_string(std::string string) {
