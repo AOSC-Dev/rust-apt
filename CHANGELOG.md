@@ -439,7 +439,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Chore
 
- - <csr-id-191149700fd6805f57d69e7dbc175fc7d22b024d/> Rename all rust-apt to oma-apt to fix build
+ - <csr-id-191149700fd6805f57d69e7dbc175fc7d22b024d/> Rename all oma-apt to oma-apt to fix build
  - <csr-id-7abc1f01bcd520243a2bc67adaba244cdada27b4/> Add changelog
 
 ### Documentation
@@ -585,7 +585,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
  * **Uncategorized**
     - Release oma-apt v0.1.1 ([`f6eb3d3`](https://github.com/AOSC-Dev/oma-apt/commit/f6eb3d34a04e00b7966a44b85fad33bbb01d8429))
-    - Rename all rust-apt to oma-apt to fix build ([`1911497`](https://github.com/AOSC-Dev/oma-apt/commit/191149700fd6805f57d69e7dbc175fc7d22b024d))
+    - Rename all oma-apt to oma-apt to fix build ([`1911497`](https://github.com/AOSC-Dev/oma-apt/commit/191149700fd6805f57d69e7dbc175fc7d22b024d))
     - Add changelog ([`7abc1f0`](https://github.com/AOSC-Dev/oma-apt/commit/7abc1f01bcd520243a2bc67adaba244cdada27b4))
     - Set version as 0.1.0 ([`b617647`](https://github.com/AOSC-Dev/oma-apt/commit/b617647574eca3f4856374eb0b4aeea300a00921))
     - Set name as oma-apt ([`ed56e40`](https://github.com/AOSC-Dev/oma-apt/commit/ed56e40168ca8b826c2ed81bc164db4bddf056c3))
@@ -667,7 +667,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Several memory leaks ([`c890491`](https://github.com/AOSC-Dev/oma-apt/commit/c89049197b6ce27c7e8b67d592c1a0e4ad9a92bf))
     - Give version structs their own pointer. ([`dfacd8e`](https://github.com/AOSC-Dev/oma-apt/commit/dfacd8edf7ef96072142b33293f8f7265516964b))
     - Rename types and use C++ Opaque Types ([`1ed41ae`](https://github.com/AOSC-Dev/oma-apt/commit/1ed41ae5b876f08ad8416c07f491d42a1966af64))
-    - Initial fork and update to `rust-apt` ([`8834d20`](https://github.com/AOSC-Dev/oma-apt/commit/8834d20473101b593634047151eedeb324e3c6ab))
+    - Initial fork and update to `oma-apt` ([`8834d20`](https://github.com/AOSC-Dev/oma-apt/commit/8834d20473101b593634047151eedeb324e3c6ab))
     - Clippy: unused import ([`a027786`](https://github.com/AOSC-Dev/oma-apt/commit/a0277868287910924a03ef80b611d0a23f6caf4f))
     - Cripple some examples on ye-old-apt ([`a603237`](https://github.com/AOSC-Dev/oma-apt/commit/a60323705ff67d59dc565be87cb12ac765828a88))
     - Missing header(?) ([`99fba90`](https://github.com/AOSC-Dev/oma-apt/commit/99fba9024ab7c0797ddb468e72c42dd612f28934))

@@ -9,17 +9,16 @@
 #include <memory>
 
 #include "cache.h"
-#include "progress.h"
+#include "oma-apt/src/progress.rs"
 
 struct PackageManager {
 	pkgPackageManager mutable* pkgmanager;
 
-	inline void get_archives(
+	void get_archives(
 		const PkgCacheFile& cache,
 		const PkgRecords& records,
-		DynAcquireProgress& callback
+		AcqTextStatus& archive_progress
 	) const {
-		AcqTextStatus archive_progress(callback);
 		pkgAcquire acquire(&archive_progress);
 
 		// We probably need to let the user set their own pkgSourcePkgCacheFileList,
@@ -31,12 +30,12 @@ struct PackageManager {
 			)) {
 			handle_errors();
 			throw std::runtime_error(
-				"Internal Issue with rust-apt in pkgmanager_get_archives."
+				"Internal Issue with oma-apt in pkgmanager_get_archives."
 				" Please report this as an issue."
 			);
 		}
 
-		pkgAcquire::RunResult result = acquire.Run(pulse_interval(callback));
+		pkgAcquire::RunResult result = acquire.Run(archive_progress.callback->pulse_interval());
 
 		if (result != pkgAcquire::Continue) {
 			// The other variants are either Failed or Cancelled
@@ -47,7 +46,7 @@ struct PackageManager {
 		}
 	}
 
-	inline void do_install(DynInstallProgress& callback) const {
+	void do_install(InstallProgress& callback) const {
 		PackageManagerWrapper install_progress(callback);
 		pkgPackageManager::OrderResult res = pkgmanager->DoInstall(&install_progress);
 
@@ -56,7 +55,7 @@ struct PackageManager {
 		} else if (res == pkgPackageManager::OrderResult::Failed) {
 			handle_errors();
 			throw std::runtime_error(
-				"Internal Issue with rust-apt in pkgmanager_do_install."
+				"Internal Issue with oma-apt in pkgmanager_do_install."
 				" DoInstall has failed but there was no error from apt."
 				" Please report this as an issue."
 			);
@@ -65,7 +64,7 @@ struct PackageManager {
 			// But we'll try anyway. This is believed to be only for media swapping
 			handle_errors();
 			throw std::runtime_error(
-				"Internal Issue with rust-apt in pkgmanager_do_install."
+				"Internal Issue with oma-apt in pkgmanager_do_install."
 				" DoInstall returned Incomplete, media swaps are unsupported."
 				" Please request media swapping as a feature."
 			);
@@ -75,7 +74,7 @@ struct PackageManager {
 			// And then fallback with a message to report with the result code.
 			handle_errors();
 			throw std::runtime_error(
-				"Internal Issue with rust-apt in pkgmanager_do_install."
+				"Internal Issue with oma-apt in pkgmanager_do_install."
 				" Please report this as an issue. OrderResult: " +
 				res
 			);
@@ -90,10 +89,10 @@ struct ProblemResolver {
 
 	/// Mark a package as protected, i.e. don't let its installation/removal state change when
 	/// modifying packages during resolution.
-	inline void protect(const PkgIterator& pkg) const { resolver.Protect(pkg); }
+	void protect(const PkgIterator& pkg) const { resolver.Protect(pkg); }
 
 	/// Try to resolve dependency problems by marking packages for installation and removal.
-	inline void u_resolve(bool fix_broken, DynOperationProgress& callback) const {
+	void resolve(bool fix_broken, OperationProgress& callback) const {
 		OpProgressWrapper op_progress(callback);
 		resolver.Resolve(fix_broken, &op_progress);
 		handle_errors();
@@ -103,11 +102,11 @@ struct ProblemResolver {
 };
 
 /// Create the problem resolver.
-std::unique_ptr<ProblemResolver> create_problem_resolver(const PkgDepCache& cache) {
+UniquePtr<ProblemResolver> create_problem_resolver(const PkgDepCache& cache) {
 	return std::make_unique<ProblemResolver>(cache.ptr);
 }
 
-std::unique_ptr<PackageManager> create_pkgmanager(const PkgDepCache& cache) {
+UniquePtr<PackageManager> create_pkgmanager(const PkgDepCache& cache) {
 	// Package Manager needs the DepCache initialized or else invalid memory reference.
 	return std::make_unique<PackageManager>(cache.ptr);
 }
