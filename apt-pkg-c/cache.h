@@ -8,10 +8,6 @@
 #include <apt-pkg/policy.h>
 #include <apt-pkg/sourcelist.h>
 #include <apt-pkg/update.h>
-
-#include <sstream>
-#include <string>
-
 #include "rust/cxx.h"
 
 // Defines the callbacks code that's generated for progress
@@ -57,6 +53,12 @@ struct PkgCacheFile : public pkgCacheFile {
 		return std::make_unique<PkgRecords>(this->unconst());
 	}
 
+	UniquePtr<SourceRecords> source_records() const {
+		auto records = std::make_unique<SourceRecords>(this->unconst()->GetSourceList());
+		handle_errors();
+		return records;
+	}
+
 	UniquePtr<IndexFile> find_index(const PkgFileIterator& file) const {
 		pkgIndexFile* index;
 		if (!this->unconst()->GetSourceList()->FindIndex(file, index)) {
@@ -85,7 +87,7 @@ inline UniquePtr<PkgCacheFile> create_cache(rust::Slice<const str> volatile_file
 
 	// Building the pkg caches can cause an error that might not
 	// Get propagated until you get a pkg which shouldn't have errors.
-	// See https://gitlab.com/volian/oma-apt/-/issues/24
+	// See https://gitlab.com/volian/rust-apt/-/issues/24
 	cache->GetPkgCache();
 	handle_errors();
 

@@ -8,19 +8,20 @@ use cxx::{Exception, UniquePtr};
 
 use crate::config::{init_config_system, Config};
 use crate::depcache::DepCache;
-use crate::error::AptErrors;
+use crate::error::{pending_error, AptErrors};
+use crate::pkgmanager::raw::OrderResult;
 use crate::progress::{AcquireProgress, InstallProgress, OperationProgress};
 use crate::raw::{
 	create_cache, create_pkgmanager, create_problem_resolver, IntoRawIter, IterPkgIterator,
 	PackageManager, PkgCacheFile, PkgIterator, ProblemResolver,
 };
-use crate::records::PackageRecords;
+use crate::records::{PackageRecords, SourceRecords};
 use crate::util::{apt_lock, apt_unlock, apt_unlock_inner};
-
 use crate::Package;
 
 /// Selection of Upgrade type
 #[repr(i32)]
+#[derive(Debug)]
 pub enum Upgrade {
 	/// Upgrade will Install new and Remove packages in addition to
 	/// upgrading them.
@@ -143,6 +144,7 @@ pub struct Cache {
 	pub(crate) ptr: UniquePtr<PkgCacheFile>,
 	depcache: OnceCell<DepCache>,
 	records: OnceCell<PackageRecords>,
+	source_records: OnceCell<SourceRecords>,
 	pkgmanager: OnceCell<UniquePtr<PackageManager>>,
 	problem_resolver: OnceCell<UniquePtr<ProblemResolver>>,
 	local_debs: Vec<String>,
@@ -174,6 +176,7 @@ impl Cache {
 			ptr: create_cache(&volatile_files)?,
 			depcache: OnceCell::new(),
 			records: OnceCell::new(),
+			source_records: OnceCell::new(),
 			pkgmanager: OnceCell::new(),
 			problem_resolver: OnceCell::new(),
 			local_debs: volatile_files
@@ -199,6 +202,25 @@ impl Cache {
 	pub fn records(&self) -> &PackageRecords {
 		self.records
 			.get_or_init(|| PackageRecords::new(unsafe { self.create_records() }))
+	}
+
+	/// Get the PkgRecords
+	pub fn source_records(&self) -> Result<&SourceRecords, AptErrors> {
+		if let Some(records) = self.source_records.get() {
+			return Ok(records);
+		}
+
+		match unsafe { self.ptr.source_records() } {
+			Ok(raw_records) => {
+				self.source_records
+					.set(SourceRecords::new(raw_records))
+					// Unwrap: This is verified empty at the beginning.
+					.unwrap_or_default();
+				// Unwrap: Records was just added above.
+				Ok(self.source_records.get().unwrap())
+			},
+			Err(_) => Err(AptErrors::new()),
+		}
 	}
 
 	/// Get the PkgManager
@@ -504,7 +526,27 @@ impl Cache {
 	/// * W:Problem unlinking the file /var/cache/apt/pkgcache.bin -
 	///   pkgDPkgPM::Go (13: Permission denied)
 	pub fn do_install(self, progress: &mut InstallProgress) -> Result<(), AptErrors> {
-		Ok(self.pkg_manager().do_install(progress.pin().as_mut())?)
+		let res = match progress {
+			InstallProgress::Fancy(inner) => self.pkg_manager().do_install(inner.pin().as_mut()),
+			InstallProgress::Fd(fd) => self.pkg_manager().do_install_fd(*fd),
+		};
+
+		if pending_error() {
+			return Err(AptErrors::new());
+		}
+
+		match res {
+			OrderResult::Completed => {},
+			OrderResult::Failed => panic!(
+				"DoInstall failed with no error from libapt. Please report this as an issue."
+			),
+			OrderResult::Incomplete => {
+				panic!("Result is 'Incomplete', please request media swapping as a feature.")
+			},
+			_ => unreachable!(),
+		}
+
+		Ok(())
 	}
 
 	/// Handle get_archives and do_install in an easy wrapper.
@@ -632,6 +674,7 @@ pub(crate) mod raw {
 		type VerIterator = crate::raw::VerIterator;
 		type PkgFileIterator = crate::raw::PkgFileIterator;
 		type PkgRecords = crate::records::raw::PkgRecords;
+		type SourceRecords = crate::records::raw::SourceRecords;
 		type IndexFile = crate::records::raw::IndexFile;
 		type PkgDepCache = crate::depcache::raw::PkgDepCache;
 		type AcqTextStatus = crate::acquire::raw::AcqTextStatus;
@@ -663,6 +706,8 @@ pub(crate) mod raw {
 		///
 		/// The returned UniquePtr cannot outlive the cache.
 		unsafe fn create_records(self: &PkgCacheFile) -> UniquePtr<PkgRecords>;
+
+		unsafe fn source_records(self: &PkgCacheFile) -> Result<UniquePtr<SourceRecords>>;
 
 		/// The priority of the Version as shown in `apt policy`.
 		pub fn priority(self: &PkgCacheFile, version: &VerIterator) -> i32;

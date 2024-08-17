@@ -16,7 +16,6 @@ fn main() {
 		"src/iterators/files.rs",
 	];
 
-
 	let mut cc_files = vec!["apt-pkg-c/error.cc"];
 
 	cxx_build::bridges(&source_files)

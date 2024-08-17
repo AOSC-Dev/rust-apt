@@ -1,11 +1,13 @@
 use std::cell::OnceCell;
+use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::fmt;
 
 use cxx::UniquePtr;
 
 use crate::raw::{IntoRawIter, PkgIterator};
-use crate::{create_depends_map, Cache, DepType, Dependency, Provider, Version};
+use crate::{create_depends_map, util, Cache, DepType, Dependency, Provider, Version};
+
 /// The state that the user wishes the package to be in.
 #[derive(Debug, Eq, PartialEq, Hash)]
 pub enum PkgSelectedState {
@@ -79,6 +81,20 @@ impl From<u8> for PkgCurrentState {
 	}
 }
 
+#[derive(Debug)]
+pub enum Marked {
+	NewInstall,
+	Install,
+	ReInstall,
+	Remove,
+	Purge,
+	Keep,
+	Upgrade,
+	Downgrade,
+	Held,
+	None,
+}
+
 /// A single unique libapt package.
 pub struct Package<'a> {
 	pub(crate) ptr: UniquePtr<PkgIterator>,
@@ -135,7 +151,7 @@ impl<'a> Package<'a> {
 	///
 	/// pkg.get_version("2.4.7");
 	/// ```
-	pub fn get_version(&'a self, version_str: &str) -> Option<Version<'a>> {
+	pub fn get_version(&self, version_str: &str) -> Option<Version<'a>> {
 		for ver in unsafe { self.ptr.versions().raw_iter() } {
 			if version_str == ver.version() {
 				return Some(Version::new(ver, self.cache));
@@ -221,14 +237,6 @@ impl<'a> Package<'a> {
 	}
 
 	/// Check if the package is upgradable.
-	///
-	/// ## skip_depcache:
-	///
-	/// Skipping the DepCache is unnecessary if it's already been initialized.
-	/// If you're unsure use `false`
-	///
-	///   * [true] = Increases performance by skipping the pkgDepCache.
-	///   * [false] = Use DepCache to check if the package is upgradable
 	pub fn is_upgradable(&self) -> bool {
 		self.is_installed() && self.cache.depcache().is_upgradable(self)
 	}
@@ -241,11 +249,60 @@ impl<'a> Package<'a> {
 		(self.is_installed() || self.marked_install()) && self.cache.depcache().is_garbage(self)
 	}
 
+	pub fn marked(&self) -> Marked {
+		// Accessors that do not check `Mode` internally must come first
+
+		// Held is also marked keep. It needs to come before keep.
+		if self.marked_held() {
+			return Marked::Held;
+		}
+
+		if self.marked_keep() {
+			return Marked::Keep;
+		}
+
+		// Upgrade, NewInstall, Reinstall and Downgrade are marked Install.
+		// They need to come before Install.
+		if self.marked_reinstall() {
+			return Marked::ReInstall;
+		}
+
+		if self.marked_upgrade() && self.is_installed() {
+			return Marked::Upgrade;
+		}
+
+		if self.marked_new_install() {
+			return Marked::NewInstall;
+		}
+
+		if self.marked_downgrade() {
+			return Marked::Downgrade;
+		}
+
+		if self.marked_install() {
+			return Marked::Install;
+		}
+
+		// Purge is also marked delete. Needs to come first.
+		if self.marked_purge() {
+			return Marked::Purge;
+		}
+
+		if self.marked_delete() {
+			return Marked::Remove;
+		}
+
+		Marked::None
+	}
+
 	/// Check if the package is now broken
 	pub fn is_now_broken(&self) -> bool { self.cache.depcache().is_now_broken(self) }
 
 	/// Check if the package package installed is broken
 	pub fn is_inst_broken(&self) -> bool { self.cache.depcache().is_inst_broken(self) }
+
+	/// Check if the package is marked NewInstall
+	pub fn marked_new_install(&self) -> bool { self.cache.depcache().marked_new_install(self) }
 
 	/// Check if the package is marked install
 	pub fn marked_install(&self) -> bool { self.cache.depcache().marked_install(self) }
@@ -258,6 +315,9 @@ impl<'a> Package<'a> {
 
 	/// Check if the package is marked delete
 	pub fn marked_delete(&self) -> bool { self.cache.depcache().marked_delete(self) }
+
+	/// Check if the package is marked held
+	pub fn marked_held(&self) -> bool { self.cache.depcache().marked_held(self) }
 
 	/// Check if the package is marked keep
 	pub fn marked_keep(&self) -> bool { self.cache.depcache().marked_keep(self) }
@@ -349,6 +409,48 @@ impl<'a> Package<'a> {
 	/// Protect a package's state
 	/// for when [`crate::cache::Cache::resolve`] is called.
 	pub fn protect(&self) { self.cache.resolver().protect(self) }
+
+	pub fn changelog_uri(&self) -> Option<String> {
+		let cand = self.candidate()?;
+
+		let src_pkg = cand.source_name();
+		let mut src_ver = cand.source_version().to_string();
+		let mut section = cand.section().ok()?.to_string();
+
+		if let Ok(src_records) = self.cache.source_records() {
+			while let Some(record) = src_records.lookup(src_pkg.to_string(), false) {
+				let record_version = record.version();
+
+				match util::cmp_versions(&record_version, &src_ver) {
+					Ordering::Equal | Ordering::Greater => {
+						src_ver = record_version;
+						section = record.section();
+						break;
+					},
+					_ => {},
+				}
+			}
+		}
+
+		let base_url = match cand.package_files().next()?.origin()? {
+			"Ubuntu" => "http://changelogs.ubuntu.com/changelogs/pool",
+			"Debian" => "http://packages.debian.org/changelogs/pool",
+			_ => return None,
+		};
+
+		let prefix = if src_pkg.starts_with("lib") {
+			format!("lib{}", src_pkg.chars().nth(3)?)
+		} else {
+			src_pkg.chars().next()?.to_string()
+		};
+
+		Some(format!(
+			"{base_url}/{}/{prefix}/{src_pkg}/{src_pkg}_{}/changelog",
+			if section.contains('/') { section.split('/').nth(0)? } else { "main" },
+			// Strip epoch
+			if let Some(split) = src_ver.split_once(':') { split.1 } else { &src_ver }
+		))
+	}
 }
 
 impl<'a> fmt::Display for Package<'a> {

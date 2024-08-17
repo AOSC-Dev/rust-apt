@@ -11,6 +11,8 @@
 #include "cache.h"
 #include "oma-apt/src/progress.rs"
 
+using OrderResult = pkgPackageManager::OrderResult;
+
 struct PackageManager {
 	pkgPackageManager mutable* pkgmanager;
 
@@ -46,39 +48,14 @@ struct PackageManager {
 		}
 	}
 
-	void do_install(InstallProgress& callback) const {
-		PackageManagerWrapper install_progress(callback);
-		pkgPackageManager::OrderResult res = pkgmanager->DoInstall(&install_progress);
+	OrderResult do_install_fd(i32 fd) const {
+		APT::Progress::PackageManagerProgressFd install_progress(fd);
+		return pkgmanager->DoInstall(&install_progress);
+	}
 
-		if (res == pkgPackageManager::OrderResult::Completed) {
-			return;
-		} else if (res == pkgPackageManager::OrderResult::Failed) {
-			handle_errors();
-			throw std::runtime_error(
-				"Internal Issue with oma-apt in pkgmanager_do_install."
-				" DoInstall has failed but there was no error from apt."
-				" Please report this as an issue."
-			);
-		} else if (res == pkgPackageManager::OrderResult::Incomplete) {
-			// It's not clear that there would be any apt errors here,
-			// But we'll try anyway. This is believed to be only for media swapping
-			handle_errors();
-			throw std::runtime_error(
-				"Internal Issue with oma-apt in pkgmanager_do_install."
-				" DoInstall returned Incomplete, media swaps are unsupported."
-				" Please request media swapping as a feature."
-			);
-		} else {
-			// If for whatever reason we manage to make it here (We shouldn't)
-			// Attempt to handle any apt errors
-			// And then fallback with a message to report with the result code.
-			handle_errors();
-			throw std::runtime_error(
-				"Internal Issue with oma-apt in pkgmanager_do_install."
-				" Please report this as an issue. OrderResult: " +
-				res
-			);
-		}
+	OrderResult do_install(InstallProgressFancy& callback) const {
+		PackageManagerWrapper install_progress(callback);
+		return pkgmanager->DoInstall(&install_progress);
 	}
 
 	PackageManager(pkgDepCache* depcache) : pkgmanager(_system->CreatePM(depcache)){};

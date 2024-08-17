@@ -27,17 +27,6 @@ inline const char* handle_str(const char* str) {
 	return str;
 }
 
-/// Getting the PkgCache can segfault if apt errors are not handled
-/// This function makes it safer as it will return a result in the event
-/// A package list or something is corrupt.
-/// See https://gitlab.com/volian/oma-apt/-/issues/24
-inline pkgCache* safe_get_pkg_cache(pkgCacheFile* cache) {
-	pkgCache* pkg_cache = cache->GetPkgCache();
-	handle_errors();
-	return pkg_cache;
-}
-
-
 /// Check if a string exists and return a Result to rust
 inline String handle_string(std::string string) {
 	if (string.empty()) { throw std::runtime_error("String doesn't exist"); }
@@ -61,6 +50,10 @@ inline i32 cmp_versions(str ver1, str ver2) {
 /// Return an APT-styled progress bar (`[####  ]`).
 inline String get_apt_progress_string(f32 percent, u32 output_width) {
 	return APT::Progress::PackageManagerFancy::GetTextProgressStr(percent, output_width);
+}
+
+inline String quote_string(str string, String bad) {
+	return QuoteString(std::string(string), bad.c_str());
 }
 
 /// Lock the APT lockfile.

@@ -27,7 +27,7 @@
 /// println!("{}", cache.get("apt").unwrap().get_version("5000:1.0.0").unwrap().version());
 /// ```
 ///
-/// Returns [`Result<oma_apt::cache::Cache, oma_apt::error::AptErrors>`]
+/// Returns [`Result<rust_apt::cache::Cache, rust_apt::error::AptErrors>`]
 macro_rules! new_cache {
 	() => {{
 		let files: Vec<String> = Vec::new();

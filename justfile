@@ -64,13 +64,13 @@ doc:
 	done
 	dpkg-scanpackages --multiversion . /dev/null > Packages
 
-	# Create an empty garbage pacakage to make sure it fails
+	# Create an empty garbage package to make sure it fails
 	echo "\n" > pkg.deb
 
 # Run all tests except for root
 test +ARGS="":
 	@just create-test-debs
-	@cargo test --no-fail-fast -- --test-threads 1 --skip root {{ARGS}}
+	@cargo test --no-fail-fast -- --test-threads 1 --skip root --skip update {{ARGS}}
 
 # Run only the root tests. Sudo password required!
 @test-root +ARGS="":

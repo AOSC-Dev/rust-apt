@@ -198,10 +198,13 @@ impl<'a> PartialEq for Version<'a> {
 	}
 }
 
+
+impl<'a> Ord for Version<'a> {
+	fn cmp(&self, other: &Self) -> Ordering { cmp_versions(self.version(), other.version()) }
+}
+
 impl<'a> PartialOrd for Version<'a> {
-	fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-		Some(cmp_versions(self.version(), other.version()))
-	}
+	fn partial_cmp(&self, other: &Self) -> Option<Ordering> { Some(self.cmp(other)) }
 }
 
 impl<'a> fmt::Display for Version<'a> {
@@ -265,6 +268,8 @@ pub(crate) mod raw {
 
 		/// The uncompressed size of the .deb file.
 		pub fn installed_size(self: &VerIterator) -> u64;
+
+		pub fn multi_arch(self: &VerIterator) -> u8;
 
 		/// True if the version is able to be downloaded.
 		#[cxx_name = "Downloadable"]

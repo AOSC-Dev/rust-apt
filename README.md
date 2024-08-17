@@ -7,21 +7,21 @@ Installing and removing packages, updating the package lists and upgrading the s
 
 If you find something missing, please make an Issue to request the feature.
 
-### *This Crate is Under Active Development*
+### *This API is subject to change at any time*
 
-This API is not considered stable. Breaking changes will happen as the API comes together.
-As `oma-apt` doesn't have a Major, breaking change will be on the Minor. Never on the Patch.
+`rust-apt` is stable for use, but breaking changes are possible.
+Breaking changes will be on the minor, never on the patch.
 
 `src/raw` contains the direct C++ bindings to `libapt-pkg` that are defined in `apt-pkg-c`
 
 These are generally considered safe, but may cause segfaults if you do something wrong.
-We offer no saftey guarantees for using the `raw` bindings directly.
+We offer no safety guarantees for using the `raw` bindings directly.
 
 If you find a way to segfault without using the `raw` bindings directly, please report this as a bug.
 
 # Documentation and Examples
 
-For more instructions on how to use `oma-apt` see our [crates.io](https://crates.io/crates/oma-apt) page.
+For more instructions on how to use `rust-apt` see our [docs.rs](https://docs.rs/rust-apt/latest/rust_apt) page.
 
 # License Note
 
@@ -29,7 +29,7 @@ This crate is licensed under the GPLv3 or later.
 
 # Building
 
-`libapt-pkg-dev` must be installed.
+`libapt-pkg-dev` must be installed. Minimum supported version is `2.0.2`.
 
 # Thread safety
 

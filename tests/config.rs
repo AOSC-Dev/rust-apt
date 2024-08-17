@@ -1,7 +1,9 @@
 mod config {
-	use oma_apt::config::Config;
 	use std::collections::VecDeque;
 	use std::process::Command;
+
+	use oma_apt::config::Config;
+	use oma_apt::new_cache;
 
 	#[test]
 	fn clear() {
@@ -22,6 +24,20 @@ mod config {
 		assert!(config.contains("APT::Architecture"));
 		assert!(!config_dump.is_empty());
 		println!("{}", config.dump());
+	}
+
+	#[test]
+	// Example of how to use only the packages in a Packagefile.
+	fn empty_cache() {
+		let config = Config::new();
+
+		config.clear("Dir::State");
+		config.set("Dir::State::status", "");
+
+		let cache = new_cache!(&["tests/files/cache/Packages"]).unwrap();
+
+		dbg!(cache.iter().count());
+		println!("{}", config.dump())
 	}
 
 	#[test]
@@ -80,6 +96,63 @@ mod config {
 		// Finally test and see if we can clear the entire list.
 		config.clear("oma_apt::aptlist");
 		assert!(config.find_vector("oma_apt::aptlist").is_empty());
+	}
+
+	#[test]
+	fn get_architectures() {
+		let config = Config::new();
+
+		let output = dbg!(
+			String::from_utf8(
+				Command::new("dpkg")
+					.arg("--print-architecture")
+					.output()
+					.unwrap()
+					.stdout,
+			)
+			.unwrap()
+		);
+
+		let arches = dbg!(config.get_architectures());
+
+		assert!(arches.contains(&output.strip_suffix('\n').unwrap().to_string()));
+	}
+
+	#[test]
+	fn config_tree() {
+		// An example of how you might walk the entire config tree.
+		let config = Config::new();
+
+		let Some(tree) = config.root_tree() else {
+			return;
+		};
+
+		let mut stack = VecDeque::new();
+		stack.push_back((tree, 0));
+
+		while let Some((node, indent)) = stack.pop_back() {
+			let indent_str = " ".repeat(indent);
+
+			if let Some(item) = node.sibling() {
+				stack.push_back((item, indent));
+			}
+
+			if let Some(item) = node.child() {
+				stack.push_back((item, indent + 2));
+			}
+
+			if let Some(tag) = node.tag() {
+				if !tag.is_empty() {
+					println!("{}Tag: {}", indent_str, tag);
+				}
+			}
+
+			if let Some(value) = node.value() {
+				if !value.is_empty() {
+					println!("{}Value: {}", indent_str, value);
+				}
+			}
+		}
 	}
 
 	#[test]

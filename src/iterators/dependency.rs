@@ -212,7 +212,7 @@ pub fn create_depends_map(
 			// This means that more than one thing can satisfy a dependency.
 			// For reverse dependencies we cannot get the or deps.
 			// This can cause a segfault
-			// See: https://gitlab.com/volian/oma-apt/-/merge_requests/36
+			// See: https://gitlab.com/volian/rust-apt/-/merge_requests/36
 			if dep.or_dep() && !dep.is_reverse() {
 				loop {
 					dep.pin_mut().raw_next();

@@ -3,11 +3,19 @@
 
 #[cxx::bridge]
 pub(crate) mod raw {
+	#[repr(u32)]
+	enum OrderResult {
+		Completed,
+		Failed,
+		Incomplete,
+	}
+
 	unsafe extern "C++" {
 		include!("oma-apt/apt-pkg-c/pkgmanager.h");
 
 		type PackageManager;
 		type ProblemResolver;
+		type OrderResult;
 
 		type PkgCacheFile = crate::cache::raw::PkgCacheFile;
 		type PkgIterator = crate::cache::raw::PkgIterator;
@@ -15,7 +23,7 @@ pub(crate) mod raw {
 		type PkgDepCache = crate::depcache::raw::PkgDepCache;
 		type AcqTextStatus = crate::acquire::raw::AcqTextStatus;
 
-		type InstallProgress<'a> = crate::progress::InstallProgress<'a>;
+		type InstallProgressFancy<'a> = crate::progress::InstallProgressFancy<'a>;
 		type OperationProgress<'a> = crate::progress::OperationProgress<'a>;
 
 		/// # Safety
@@ -30,8 +38,14 @@ pub(crate) mod raw {
 			progress: Pin<&mut AcqTextStatus>,
 		) -> Result<()>;
 
-		pub fn do_install(self: &PackageManager, progress: Pin<&mut InstallProgress>)
-		-> Result<()>;
+		pub fn do_install(
+			self: &PackageManager,
+			progress: Pin<&mut InstallProgressFancy>,
+		) -> OrderResult;
+
+		/// Send dpkg status messages to an File Descriptor.
+		/// This required more work to implement but is the most flexible.
+		pub fn do_install_fd(self: &PackageManager, fd: i32) -> OrderResult;
 
 		/// # Safety
 		///
