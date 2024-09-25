@@ -3,10 +3,10 @@ mod cache {
 	use std::fmt::Write as _;
 
 	use cxx::{CxxVector, UniquePtr};
-	use rust_apt::cache::*;
-	use rust_apt::raw::{create_acquire, IntoRawIter, ItemDesc};
-	use rust_apt::util::*;
-	use rust_apt::{new_cache, DepType};
+	use oma_apt::raw::{create_acquire, IntoRawIter, ItemDesc};
+	use oma_apt::util::{show_broken_pkg, unit_str, DiskSpace, NumSys};
+	use oma_apt::DepType;
+	use oma_apt::{new_cache, PackageSort};
 
 	// This is a manual test. I don't know a good way to dynamically test this
 	// Maybe by installing a test-deb with certain depends and checking the
@@ -583,6 +583,13 @@ mod cache {
 
 		cache.depcache().clear_marked().unwrap();
 		assert!(!pkg.marked_delete());
+	}
+
+	#[test]
+	fn test_is_important() {
+		let cache = new_cache!().unwrap();
+		let pkg = cache.get("oma").unwrap();
+		dbg!(pkg.is_important());
 	}
 
 	#[test]

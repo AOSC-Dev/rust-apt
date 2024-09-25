@@ -138,6 +138,9 @@ struct PkgIterator : public pkgCache::PkgIterator {
 	/// True if the package is essential.
 	bool is_essential() const { return ((*this)->Flags & pkgCache::Flag::Essential) != 0; }
 
+	/// True if the package is important.
+	bool is_important() const { return ((*this)->Flags & pkgCache::Flag::Important) != 0; }
+
 	UniquePtr<VerIterator> current_version() const {
 		return std::make_unique<VerIterator>(this->CurrentVer());
 	}

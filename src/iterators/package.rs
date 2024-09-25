@@ -505,6 +505,9 @@ pub(crate) mod raw {
 		/// True if the package is essential.
 		pub fn is_essential(self: &PkgIterator) -> bool;
 
+		/// True if the package is important.
+		pub fn is_important(self: &PkgIterator) -> bool;
+
 		/// Get a pointer the the currently installed version.
 		///
 		/// # Safety
