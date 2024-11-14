@@ -3,10 +3,10 @@ mod cache {
 	use std::fmt::Write as _;
 
 	use cxx::{CxxVector, UniquePtr};
-	use rust_apt::cache::*;
-	use rust_apt::raw::{create_acquire, IntoRawIter, ItemDesc};
-	use rust_apt::util::*;
-	use rust_apt::{new_cache, DepType};
+	use oma_apt::cache::*;
+	use oma_apt::raw::{create_acquire, IntoRawIter, ItemDesc};
+	use oma_apt::util::*;
+	use oma_apt::{new_cache, DepType};
 
 	// This is a manual test. I don't know a good way to dynamically test this
 	// Maybe by installing a test-deb with certain depends and checking the
@@ -157,7 +157,7 @@ mod cache {
 	}
 
 	// This should not segfault, but has in the past.
-	// See https://gitlab.com/volian/rust-apt/-/issues/28
+	// See https://gitlab.com/volian/oma-apt/-/issues/28
 	#[test]
 	fn no_description() {
 		let cache = new_cache!(&["tests/files/cache/no-description_0.0.1.deb"]).unwrap();
@@ -360,7 +360,7 @@ mod cache {
 		for pkg in cache.packages(&sort) {
 			// Iterate over the reverse depends
 			// Iterating rdepends could segfault.
-			// See: https://gitlab.com/volian/rust-apt/-/merge_requests/36
+			// See: https://gitlab.com/volian/oma-apt/-/merge_requests/36
 			for deps in pkg.rdepends().values() {
 				for dep in deps {
 					let base_dep = dep.first();
