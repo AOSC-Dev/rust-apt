@@ -361,7 +361,6 @@ impl Cache {
 	///
 	/// let cache = new_cache!().unwrap();
 	/// let mut progress = AcquireProgress::apt();
-
 	/// if let Err(e) = cache.update(&mut progress) {
 	///     for error in e.iter() {
 	///         if error.is_error {
@@ -373,7 +372,8 @@ impl Cache {
 	/// }
 	/// ```
 	/// # Known Errors:
-	/// * E:Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+	/// * E:Could not open lock file /var/lib/apt/lists/lock - open (13:
+	///   Permission denied)
 	/// * E:Unable to lock directory /var/lib/apt/lists/
 	pub fn update(self, progress: &mut AcquireProgress) -> Result<(), AptErrors> {
 		Ok(self.ptr.update(progress.mut_status())?)
